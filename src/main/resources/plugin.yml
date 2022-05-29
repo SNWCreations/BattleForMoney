@@ -1,8 +1,8 @@
-name: RunForMoney
+name: BattleForMoney
 version: '${project.version}'
-main: snw.rfm.RunForMoney
+main: snw.bfm.BattleForMoney
 api-version: 1.16
 author: "SNWCreations"
 description: '${project.description}'
-website: https://github.com/SNWCreations/RunForMoney
+website: https://github.com/SNWCreations/BattleForMoney
 depend: [CommandAPI]

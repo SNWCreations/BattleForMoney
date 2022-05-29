@@ -1,0 +1,212 @@
+{
+  "setup.no_gameworld": "Warning: Unable to find a map for the game, please fix the error and execute the /rfmreload command to reload the endroom location.",
+  "setup.author_info": "This plugin was made by SNWCreations @ MCBBS.NET",
+  "setup.load_data": "Load data...",
+  "setup.register_command": "Register command...",
+  "setup.command_not_found": "Command $cmdName$ failed to register. Plugin could not be loaded.",
+  "setup.register_event_processor": "Register event processor...",
+  "setup.complete": "Loading complete.",
+
+  "setup.config.invalid_endroom_location": "Warning: Endroom location did not load properly. Because its value is invalid.",
+  "setup.config.item.invalid_type": "Warning: Error creating item $itemName$: No available item type provided. Please check configuration!",
+
+  "setup.preset.template_warning": "Note: Preset detected with IS_TEMPLATE value of true, the preset will not load.",
+  "setup.preset.load_start": "Load preset...",
+  "setup.preset.runners_empty": "runners are empty!",
+  "setup.preset.hunters_empty": "hunters are empty!",
+  "setup.preset.no_playername_found": "The runners item and hunters item are empty, the preset cannot be loaded.",
+  "setup.preset.repeat_playername": "The player name $playername$ was detected to be repeated in the preset, so the preset for this player is invalid.",
+  "setup.preset.no_group_requested": "The groups item does not exist, the group will not be preset.",
+  "setup.preset.groups_created": "Created $count$ groups.",
+  "setup.preset.load_complete": "Preset loading completed.",
+
+  "unload.forcestop": "An active game has been detected and is forcibly terminated.",
+
+  "update.start": "Checking for updates...",
+  "update.result.old": "Your plugin is an old version! Current version: $currentVersion$ , latest version: $latestVersion$",
+  "update.result.uptodate": "This plugin is the latest version!",
+  "update.result.future": "The version you are using has not been released yet! This may be a test build of the new version?",
+  "update.result.impossible": "The internal code returned an impossible value, and the judgment failed. The judgment method returned: $result$ . The last version on Github is: $latestVersion$ The current version is: $currentVersion$",
+  "update.failed.message_prefix": "Error checking for updates: ",
+  "update.failed.connect": "Error connecting to Github API or reading data",
+  "update.failed.invalid_data": "Could not parse the data from the Github API because the returned data is not a valid JSON",
+
+  "item.ep": "Abandon Pickaxe",
+  "item.hpc": "Hunter Pause Card",
+
+
+  "event.join.welcome": "============ Welcome! ===============",
+  "event.join.plugin_info": "This server is running Run For Money plugin, version ",
+  "event.join.author": "Plugin author: SNWCreations @ MCBBS.NET",
+  "event.join.bilibili": "Bilibili: @SNWCreations (Click me!)",
+  "event.join.bilibili_hover": "Visit my Bilibili homepage!",
+  "event.join.mcbbs": "MCBBS: @SNWCreations (Click me!)",
+  "event.join.mcbbs_hover": "Visit my MCBBS homepage!",
+  "event.join.new_player_ingame": "$status$ You joined as a spectator.",
+  "event.join.preset_as_hunter": "You are preset as hunter by the administrator.",
+  "event.join_preset_as_runner": "You are preset as a runner by the administrator.",
+  "event.join.preset_join_group": "You are preset to join group $groupName$.",
+
+  "event.hunter_release_timer_message": "The hunter has $time$ seconds to release",
+  "event.hunter_released": "Hunter has been released",
+
+  "event.catch_message": "$playerName$ was caught.",
+  "event.exit_message": "$playerName$ has abstained.",
+  "event.respawn": "You have been resurrected",
+  "event.respawn_broadcast": "$playerName$ has been revived.",
+
+  "event.hunter_activated": "You have been activated",
+  "event.runner_activated": "You are disabled",
+
+  "event.hpc_used": "$playerName$ used a hunter pause card. Hunter paused for $time$ seconds.",
+
+
+  "game.player_remaining": "$remaining$ players remaining.",
+
+  "game.status.not_running": "The game is not running.",
+  "game.status.already_running": "The game is already running.",
+  "game.status.already_paused": "The game has been paused.",
+
+
+  "game.process.start.no_team": "You did not choose a team, so you are now a spectator.",
+  "game.process.start.title": "Run For Money",
+  "game.process.start.subtitle": "The hunter will be released in $time$ seconds",
+  "game.process.start.broadcast": "Game Start",
+  "game.process.stop.broadcast": "Game stopped",
+  "game.process.pause.broadcast": "The game is paused.",
+  "game.process.resume.broadcast": "The game continues.",
+
+
+  "game.process.stop_choice.broadcast": "All players are no longer in the game, it is now up to the administrator to decide whether to end the game.",
+  "game.process.stop_choice.yes": "[Yes]",
+  "game.process.stop_choice.yes_hover": "If you choose this option, the addon will terminate the game on your behalf.",
+  "game.process.stop_choice.no": " [No]",
+  "game.process.stop_choice.no_hover": "If you select this option, the plugin will notify all players and you will not be able to start new games until the game is terminated, you will do the rest.",
+  "game.process.stop_choice.no_say_content": "The game will not be terminated.",
+
+  "game.time_remaining_actionbar": "Time remaining: ",
+
+
+  "commands.not_enough_args": "Not enough arguments!",
+  "commands.not_enough_or_too_many_args": "Not enough or too many arguments!",
+  "commands.invalid_argument": "Invalid value provided.",
+  "commands.player_required": "This command can only be executed by players.",
+  "commands.player_not_online": "Player is not online.",
+  "commands.operation_success": "The operation was successful.",
+  "commands.operation_failed": "The operation failed.",
+  "commands.batch.op_required": "Batch operations can only be performed by administrators.",
+  "commands.batch.failed_list_header": "The operation failed: ",
+  "commands.batch.failed_not_exists": "Of which, $count$ players failed because they didn't exist.",
+
+  "commands.coinlist.header": "============ Coin List =============",
+  "commands.coinlist.empty": "Coin list is empty!",
+
+  "commands.exportlist.created_time": "Created time: ",
+  "commands.exportlist.unable_to_export": "An exception occurred while trying to create a file and write data, possibly due to lack of permissions or full storage.",
+  "commands.exportlist.saved_to": "The file has been saved to $fileName$.",
+
+  "commands.forcestop.broadcast": "The game was forcibly terminated by the administrator.",
+
+  "commands.resume.no_player_online": "Because neither team is online.",
+
+  "commands.rfmitem.item_not_found": "The requested item $itemName$ does not exist.",
+
+  "commands.grouplist.empty": "No group exists.",
+  "commands.grouplist.header": "The following groups exist: ",
+  "commands.grouplist.count": "Total $count$",
+
+  "commands.rfmrespawn.success_count": "$count$ players have been respawned.",
+  "commands.rfmrespawn.failed_count": "Of these, $count$ players failed because they don't exist or are already in the game.",
+
+  "commands.rsq.hunter_release_time_default": "The default hunter release time (ie, the default value when using the /start command and no release time is provided, in seconds): ",
+  "commands.rsq.endroom_location": "Endroom location: ",
+  "commands.rsq.endroom_part2": "$x$ $y$ $z$, in world $worldName$",
+  "commands.rsq.not_set_yet": "Not set yet",
+  "commands.rsq.game_time": "Game time (in minutes): ",
+  "commands.rsq.coin_per_second": "Increased coins per second: ",
+  "commands.rsq.multiplier": "When you have been caught, your coin will be multiplied by: ",
+
+  "commands.rfmtimer.enabled": "Now you will see the remaining time while playing.",
+  "commands.rfmtimer.disabled": "Now you won't see the remaining time while playing.",
+
+  "commands.start.no_hunter_found": "No one is in the hunter team, so the game cannot be started.",
+  "commands.start.no_runner_found": "No one is in the runner team, so the game cannot be started.",
+  "commands.start.starting": "The game is about to start!",
+  "commands.start.success": "The game has started.",
+
+  "commands.teamlist.no_hunter": "The hunter team has no members.",
+  "commands.teamlist.no_runner": "The runner team has no members.",
+  "commands.teamlist.hunter_header": "Hunter Team: ",
+  "commands.teamlist.runner_header": "Runner Team: ",
+
+  "commands.group.not_hunter": "You are not a hunter, this command has no effect on you.",
+  "commands.group.group_not_found": "The requested group does not exist.",
+  "commands.group.left_group_by_admin": "You left the group you were in because of an admin action.",
+
+  "commands.group.activate.success": "Successfully activated group $groupName$.",
+  "commands.group.activate.failed": "Failed to activate group $groupName$. $commands.group.group_not_found$",
+  "commands.group.deactivate.success": "Successfully deactivated group $groupName$.",
+  "commands.group.deactivate.failed": "Failed to deactivate group $groupName$. $commands.group.group_not_found$",
+  "commands.group.join.already_in_a_group": "You are already a member of group $groupName$, please leave your current group first.",
+  "commands.group.join.success_count": "$count$ hunters were added to group $groupName$ .",
+  "commands.group.leave.not_in_a_group.single": "You are not in any group.",
+  "commands.group.leave.not_in_a_group.multi": "$playerName$ is not in any group.",
+  "commands.group.leave.success_count": "$count$ hunters left their group.",
+  "commands.group.new.already_exists": "This group already exists.",
+  "commands.group.new.success": "Successfully created group $groupName$ .",
+
+  "commands.hunter.activate.not_hunter": "This player is not a hunter.",
+  "commands.hunter.activate.already_activated": "This hunter is not disabled.",
+  "commands.hunter.deactivate.already_deactivated": "This hunter has been deactivated.",
+  "commands.hunter.deactivate.success_count": "There are $count$ hunters disabled.",
+  "commands.hunter.deactivate.failed_count": "Of these, $count$ players failed to deactivate because they do not exist, are not hunters, or have been disabled.",
+
+  "commands.team.help.join": "/rfmteam join <teamName> - join the team named <teamName>",
+  "commands.team.help.leave": "/rfmteam leave - leave your team",
+  "commands.team.help.list": "/rfmteam list - list the names of all registered teams",
+
+  "commands.team.batch.success_to_player": "Because of an administrator action, you are now a member of the $teamName$ team",
+  "commands.team.batch.leave_team_by_force": "Checked that you are a member of the $teamName$ team and has now automatically left the team.",
+  "commands.team.batch.success_count": "$count$ players became members of the $teamName$ team.",
+
+  "commands.team.list_header": "There are the teams: ",
+  "commands.team.hunter.success": "You are now a hunter!",
+  "commands.team.hunter.success_admin": "Because of the admin's actions, you are now a hunter!",
+  "commands.team.hunter.success_count": "$count$ players became hunters.",
+  "commands.team.hunter.leave_runner_team": "Detected that you were in a runner team and has now automatically left the team.",
+  "commands.team.leave.not_in_team": "You are not on any team.",
+  "commands.team.leave.not_in_team_multi": "$playerName$ is not in any team.",
+  "commands.team.leave.batch_to_player": "Because of an administrator action, you are no longer part of the $teamName$ team",
+  "commands.team.leave.success": "You leave your team, which means that when the game starts, if you haven't selected a team, you will be a spectator.",
+  "commands.team.leave.success_count": "$count$ players were removed from their team.",
+  "commands.team.runner.success": "You are now a runner!",
+  "commands.team.runner.success_admin": "Because of the administrator's actions, you are now a runner!",
+  "commands.team.runner.success_count": "$count$ players became runners.",
+  "commands.team.runner.leave_hunter_team": "Detected that you were in a hunter team and has now automatically left the team.",
+  "commands.team.runner.leave_group": "You have left your group $groupName$ due to an administrator action.",
+
+  "commands.prc.runner_header": "Alive runners: ",
+  "commands.prc.not_in_game_header": "Players who are not in the game (including arrestees and abstention): ",
+
+  "commands.rfmgame.help.start": "/rfmgame start [hunterReleaseTime] - start the game",
+  "commands.rfmgame.help.stop": "/rfmgame stop - force stop the game",
+  "commands.rfmgame.help.pause": "/rfmgame pause - pause existing game",
+  "commands.rfmgame.help.resume": "/rfmgame resume [force] - resume existing game",
+  "commands.rfmgame.help.respawn": "/rfmgame respawn <playerToRespawn> - respawns the player named with the value of the parameter playerToRespawn",
+
+  "commands.rfmdata.help.coin": "/rfmdata coin - show coin list",
+  "commands.rfmdata.help.exportcoin": "/rfmdata exportcoin - export coin list",
+  "commands.rfmdata.help.playerremaining": "/rfmdata playerremaining - displays a list of remaining players and captured players",
+  "commands.rfmdata.help.timer": "/rfmdata timer - causes the game to show the remaining time on your Actionbar while the game is running",
+  "commands.rfmdata.help.settings": "/rfmdata settings - view plugin configuration",
+  "commands.rfmdata.help.endroom": "/rfmdata endroom - set the end room location",
+  "commands.rfmdata.help.reload": "/rfmdata reload - reload plugin configuration from disk",
+
+  "commands.rfmgroup.help.join": "/rfmgroup join <groupName> - join the group named with the value of the parameter groupName",
+  "commands.rfmgroup.help.leave": "/rfmgroup leave - leave the group",
+  "commands.rfmgroup.help.activate": "/rfmgroup activate <groupName> - activate the group named with the value of the parameter groupName",
+  "commands.rfmgroup.help.deactivate": "/rfmgroup deactivate <groupName> - deactivate the group named with the value of the parameter groupName",
+  "commands.rfmgroup.help.create": "/rfmgroup create <groupName> - create a group named with the value of parameter groupName",
+  "commands.rfmgroup.help.delete": "/rfmgroup delete <groupName> - delete the group named with the value of the parameter groupName",
+  "commands.rfmgroup.help.list": "/rfmgroup list - show created groups"
+}

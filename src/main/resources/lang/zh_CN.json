@@ -1,0 +1,213 @@
+{
+  "setup.no_gameworld": "警告: 无法找到用于游戏的地图，请修正错误后执行 /rfmreload 命令来重新加载终止间位置。",
+  "setup.author_info": "本插件由 SNWCreations @ MCBBS.NET 制作",
+  "setup.load_data": "加载数据...",
+  "setup.register_command": "注册命令...",
+  "setup.command_not_found": "命令 $cmdName$ 注册失败。插件无法加载。",
+  "setup.register_event_processor": "注册事件处理器...",
+  "setup.complete": "加载完成。",
+
+  "setup.config.invalid_endroom_location": "警告: 终止间位置未正常加载。因为其值无效。",
+  "setup.config.item.invalid_type": "警告: 创建物品 $itemName$ 时出现错误: 未提供一个可用的物品类型。请检查配置！",
+
+  "setup.preset.template_warning": "注意: 检测到预设的 IS_TEMPLATE 值为 true ，预设不会加载。",
+  "setup.preset.load_start": "加载预设...",
+  "setup.preset.runners_empty": "runners 为空！",
+  "setup.preset.hunters_empty": "hunters 为空！",
+  "setup.preset.no_playername_found": "runners 项和 hunters 项均为空，预设无法加载。",
+  "setup.preset.repeat_playername": "检测到玩家名 $playername$ 在预设中重复，因此对该玩家的预设无效。",
+  "setup.preset.no_group_requested": "groups 项不存在，将不会预设组。",
+  "setup.preset.groups_created": "创建了 $count$ 个组。",
+  "setup.preset.load_complete": "预设加载完成。",
+
+  "unload.forcestop": "检测到有正在进行的游戏，正在强制终止现有游戏。",
+
+  "update.start": "正在检查更新...",
+  "update.result.old": "你的插件是旧版本的！当前版本: $currentVersion$ ，最新版本: $latestVersion$",
+  "update.result.uptodate": "此插件是最新版！",
+  "update.result.future": "你用的版本尚未发布！这可能是新版本的一个测试构建？",
+  "update.result.impossible": "内部代码返回了不可能的值，判断失败。判断方法返回了: $result$ 。Github 上最后的版本是: $latestVersion$ 现有版本是: $currentVersion$",
+  "update.failed.message_prefix": "检查更新时出现错误: ",
+  "update.failed.connect": "连接 Github API 或 读取数据 时出现错误",
+  "update.failed.invalid_data": "无法解析来自 Github API 的数据，因为返回的数据不是一个有效的 JSON",
+
+  "item.ep": "弃权镐",
+  "item.hpc": "猎人暂停卡",
+
+
+  "event.join.welcome": "================== 欢迎! ===================",
+  "event.join.plugin_info": "此服务器正在运行 全员逃走中 插件, 版本 ",
+  "event.join.author": "插件作者: ZX夏夜之风 (SNWCreations) @ MCBBS.NET",
+  "event.join.bilibili": "B站: @ZX夏夜之风 (可点!)",
+  "event.join.bilibili_hover": "访问我的 B站 主页!",
+  "event.join.mcbbs": "MCBBS: @ZX夏夜之风 (可点!)",
+  "event.join.mcbbs_hover": "访问我的 MCBBS 主页!",
+  "event.join.new_player_ingame": "$status$ 您以旁观者身份加入。",
+  "event.join.preset_as_hunter": "你被管理员预设为猎人。",
+  "event.join_preset_as_runner": "你被管理员预设为逃走队员。",
+  "event.join.preset_join_group": "你被预设加入组 $groupName$ 。",
+
+  "event.hunter_release_timer_message": "猎人还有 $time$ 秒放出",
+  "event.hunter_released": "猎人已经放出",
+
+  "event.catch_message": "$playerName$ 被抓",
+  "event.exit_message": "$playerName$ 已弃权",
+  "event.respawn": "你已被复活",
+  "event.respawn_broadcast": "$playerName$ 已被复活",
+
+  "event.hunter_activated": "你已被启用",
+  "event.runner_activated": "你已被禁用",
+
+  "event.hpc_used": "$playerName$ 使用了猎人暂停卡。猎人暂停了 $time$ 秒。",
+
+
+  "game.player_remaining": "剩余 $remaining$ 人",
+
+  "game.status.not_running": "游戏未在运行。",
+  "game.status.already_running": "游戏已在运行。",
+  "game.status.already_paused": "游戏已经暂停。",
+
+
+  "game.process.start.no_team": "你没有选择队伍，因此你现在是旁观者。",
+  "game.process.start.title": "全员逃走中",
+  "game.process.start.subtitle": "猎人将在 $time$ 秒后放出",
+  "game.process.start.broadcast": "游戏开始",
+  "game.process.stop.broadcast": "游戏结束",
+  "game.process.pause.broadcast": "游戏暂停。",
+  "game.process.resume.broadcast": "游戏继续。",
+
+
+  "game.process.stop_choice.broadcast": "所有玩家均已不在逃走中游戏内，现在由管理员决定是否结束游戏。",
+  "game.process.stop_choice.yes": "[是]",
+  "game.process.stop_choice.yes_hover": "如果您选择此选项，插件将会以您的身份终止游戏。",
+  "game.process.stop_choice.no": " [否]",
+  "game.process.stop_choice.no_hover": "如果您选择此选项，插件会通知所有玩家，并且在终止游戏前您将不能启动新游戏，剩余操作由您进行。",
+  "game.process.stop_choice.no_say_content": "游戏暂不终止。",
+
+
+  "game.time_remaining_actionbar": "剩余时间: ",
+
+
+  "commands.not_enough_args": "参数不足！",
+  "commands.not_enough_or_too_many_args": "参数不足或过多！",
+  "commands.invalid_argument": "提供的值无效。",
+  "commands.player_required": "此指令只能玩家执行。",
+  "commands.player_not_online": "玩家不在线。",
+  "commands.operation_success": "操作成功。",
+  "commands.operation_failed": "操作失败。",
+  "commands.batch.op_required": "批量操作仅管理员可以执行。",
+  "commands.batch.failed_list_header": "操作失败的有: ",
+  "commands.batch.failed_not_exists": "其中，有 $count$ 个玩家因为不存在而操作失败。",
+
+  "commands.coinlist.header": "============ 硬币榜 ============",
+  "commands.coinlist.empty": "硬币榜为空！",
+
+  "commands.exportlist.created_time": "创建时间: ",
+  "commands.exportlist.unable_to_export": "尝试创建文件并写入数据时发生了异常，可能是没有权限或存储空间已满。",
+  "commands.exportlist.saved_to": "文件已保存到 $fileName$ 。",
+
+  "commands.forcestop.broadcast": "游戏被管理员强制终止。",
+
+  "commands.resume.no_player_online": "因为两个队伍都无人在线。",
+
+  "commands.rfmitem.item_not_found": "请求的物品 $itemName$ 不存在。",
+
+  "commands.grouplist.empty": "没有存在的组。",
+  "commands.grouplist.header": "现有以下组: ",
+  "commands.grouplist.count": "共有 $count$ 个",
+
+  "commands.rfmrespawn.success_count": "有 $count$ 个玩家被复活。",
+  "commands.rfmrespawn.failed_count": "其中，有 $count$ 个玩家因为不存在或已在游戏中而操作失败。",
+
+  "commands.rsq.hunter_release_time_default": "猎人默认释放时间 (即使用 /start 命令且不提供释放时间时的默认值, 秒为单位): ",
+  "commands.rsq.endroom_location": "终止间位置: ",
+  "commands.rsq.endroom_part2": "$x$ $y$ $z$, 位于世界 $worldName$",
+  "commands.rsq.not_set_yet": "暂未设置",
+  "commands.rsq.game_time": "游戏时间 (分钟为单位): ",
+  "commands.rsq.coin_per_second": "每秒增加的 硬币 数量: ",
+  "commands.rsq.multiplier": "被捕时 硬币 将乘以: ",
+
+  "commands.rfmtimer.enabled": "现在你会在游戏时看到剩余时间。",
+  "commands.rfmtimer.disabled": "现在你不会在游戏时看到剩余时间。",
+
+  "commands.start.no_hunter_found": "没有人在猎人队伍里，因此无法启动游戏。",
+  "commands.start.no_runner_found": "没有人在逃走队员队伍里，因此无法启动游戏。",
+  "commands.start.starting": "游戏即将开始！",
+  "commands.start.success": "游戏已启动。",
+
+  "commands.teamlist.no_hunter": "猎人队伍没有成员。",
+  "commands.teamlist.no_runner": "逃走队员队伍没有成员。",
+  "commands.teamlist.hunter_header": "猎人队伍: ",
+  "commands.teamlist.runner_header": "逃走队员队伍: ",
+
+  "commands.group.not_hunter": "你不是猎人，此命令对你无效。",
+  "commands.group.group_not_found": "请求的组不存在。",
+  "commands.group.left_group_by_admin": "因为管理员的操作，你从你所在的组离开了。",
+
+  "commands.group.activate.success": "成功地启用了组 $groupName$ 。",
+  "commands.group.activate.failed": "启用组 $groupName$ 时失败。 $commands.group.group_not_found$",
+  "commands.group.deactivate.success": "成功地禁用了组 $groupName$ 。",
+  "commands.group.deactivate.failed": "禁用组 $groupName$ 时失败。 $commands.group.group_not_found$",
+  "commands.group.join.already_in_a_group": "你已经是组 $groupName$ 的成员了，请先离开你现在所在的组。",
+  "commands.group.join.success_count": "$count$ 具猎人被增加进组 $groupName$ 。",
+  "commands.group.leave.not_in_a_group.single": "你不在任何组里。",
+  "commands.group.leave.not_in_a_group.multi": "$playerName$ 并不在任何组里。",
+  "commands.group.leave.success_count": "$count$ 具猎人离开了其所在组。",
+  "commands.group.new.already_exists": "此组已存在。",
+  "commands.group.new.success": "成功地创建了组 $groupName$ 。",
+
+  "commands.hunter.activate.not_hunter": "此玩家不是猎人。",
+  "commands.hunter.activate.already_activated": "此猎人未被禁用。",
+  "commands.hunter.deactivate.already_deactivated": "此猎人已经被禁用。",
+  "commands.hunter.deactivate.success_count": "有 $count$ 具猎人被禁用。",
+  "commands.hunter.deactivate.failed_count": "其中，有 $count$ 个玩家因为不存在、不是猎人或已经被禁用而禁用失败。",
+
+  "commands.team.help.join": "/rfmteam join <teamName> - 加入名为 <teamName> 的队伍",
+  "commands.team.help.leave": "/rfmteam leave - 离开你所在的队伍",
+  "commands.team.help.list": "/rfmteam list - 列出所有已注册队伍的名称",
+
+  "commands.team.batch.success_to_player": "因为管理员的操作，你现在是 $teamName$ 队伍的成员了",
+  "commands.team.batch.leave_team_by_force": "检查到你是 $teamName$ 队伍的成员，现已自动离开队伍。",
+  "commands.team.batch.success_count": "$count$ 个玩家成为 $teamName$ 队伍的成员。",
+
+  "commands.team.list_header": "现有以下队伍: ",
+  "commands.team.hunter.success": "你现在是猎人！",
+  "commands.team.hunter.success_admin": "因为管理员的操作，你现在是猎人！",
+  "commands.team.hunter.success_count": "$count$ 个玩家成为猎人。",
+  "commands.team.hunter.leave_runner_team": "检测到你在逃走队员队伍里，现已自动离开队伍。",
+  "commands.team.leave.not_in_team": "你不在任何队伍里。",
+  "commands.team.leave.not_in_team_multi": "$playerName$ 并不在任何队伍里。",
+  "commands.team.leave.batch_to_player": "因为管理员的操作，你现在不再是 $teamName$ 队伍的成员了",
+  "commands.team.leave.success": "你离开了你所在的队伍，这意味着当游戏开始时，若你仍未选择队伍，你将会成为旁观者。",
+  "commands.team.leave.success_count": "$count$ 个玩家被移出其所在队伍。",
+  "commands.team.runner.success": "你现在是逃走队员！",
+  "commands.team.runner.success_admin": "因为管理员的操作，你现在是逃走队员！",
+  "commands.team.runner.success_count": "$count$ 个玩家成为逃走队员。",
+  "commands.team.runner.leave_hunter_team": "检测到你在猎人队伍里，现已自动离开队伍。",
+  "commands.team.runner.leave_group": "因为管理员的操作，你从你所在的组 $groupName$ 离开了。",
+
+  "commands.prc.runner_header": "存活的逃走队员: ",
+  "commands.prc.not_in_game_header": "不在游戏中的玩家 (包括被捕和弃权的): ",
+
+  "commands.rfmgame.help.start": "/rfmgame start [hunterReleaseTime] - 启动游戏",
+  "commands.rfmgame.help.stop": "/rfmgame stop - 强制终止游戏",
+  "commands.rfmgame.help.pause": "/rfmgame pause - 暂停现有游戏",
+  "commands.rfmgame.help.resume": "/rfmgame resume [force] - 恢复现有游戏",
+  "commands.rfmgame.help.respawn": "/rfmgame respawn <playerToRespawn> - 使名为参数 playerToRespawn 的值的玩家复活",
+
+  "commands.rfmdata.help.coin": "/rfmdata coin - 显示硬币榜",
+  "commands.rfmdata.help.exportcoin": "/rfmdata exportcoin - 导出硬币榜",
+  "commands.rfmdata.help.playerremaining": "/rfmdata playerremaining - 显示剩余玩家以及已被捕玩家的列表",
+  "commands.rfmdata.help.timer": "/rfmdata timer - 使游戏运行时在你的 Actionbar 处显示剩余时间",
+  "commands.rfmdata.help.settings": "/rfmdata settings - 查看插件配置",
+  "commands.rfmdata.help.endroom": "/rfmdata endroom - 设置终止间位置",
+  "commands.rfmdata.help.reload": "/rfmdata reload - 从磁盘重新加载插件配置",
+
+  "commands.rfmgroup.help.join": "/rfmgroup join <groupName> - 加入名为参数 groupName 的值的组",
+  "commands.rfmgroup.help.leave": "/rfmgroup leave - 离开所在的组",
+  "commands.rfmgroup.help.activate": "/rfmgroup activate <groupName> - 启用名为参数 groupName 的值的组",
+  "commands.rfmgroup.help.deactivate": "/rfmgroup deactivate <groupName> - 禁用名为参数 groupName 的值的组",
+  "commands.rfmgroup.help.create": "/rfmgroup create <groupName> - 创建名为参数 groupName 的值的组",
+  "commands.rfmgroup.help.delete": "/rfmgroup delete <groupName> - 删除名为参数 groupName 的值的组",
+  "commands.rfmgroup.help.list": "/rfmgroup list - 显示已创建的组"
+}

@@ -1,0 +1,8 @@
+name: RunForMoney
+version: '${project.version}'
+main: snw.rfm.RunForMoney
+api-version: 1.16
+author: "SNWCreations"
+description: '${project.description}'
+website: https://github.com/SNWCreations/RunForMoney
+depend: [CommandAPI]

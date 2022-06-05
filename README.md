@@ -1,20 +1,20 @@
-# Run For Money
+# Battle For Money
 
-[现在是中文版本] [Go to English Version](https://github.com/SNWCreations/RunForMoney/blob/main/README.en_US.md)
+[现在是中文版本] [Go to English Version](https://github.com/SNWCreations/BattleForMoney/blob/main/README.en_US.md)
 
-本插件是我的第二个作品。是看了 @骑单车の茂茂 (https://space.bilibili.com/8957291) 大大的 MC版《全员逃走中》系列后制作的。
+这是 [SNWCreations/RunForMoney](https://github.com/SNWCreations/RunForMoney) 分支 dev/1.9 的 Fork 。
+
+实现了 战斗中 游戏系统。
 
 ## 此插件的功能 & 特点
 
 * 基本分队
 * 管理员可以掌控游戏流程
-* ~~有简单的事件机制，在 snw.rfm.api.events 包内，可以监听。~~ **现在 API 内容已被分割。 见 [RFM API](https://github.com/SNWCreations/RunForMoneyAPI) 。**
 * 可配置性强，配置文件有详细的注释，便于理解。
-* 猎人分组，适用于某些失败了就会放出猎人的任务，可以单独放出也可以成组放出。
 * 命令丰富，对管理员友好。
 * 游戏数据查询方便。
 
-查看此插件的命令请移步 [COMMANDS.md](https://github.com/SNWCreations/RunForMoney/blob/main/COMMANDS.md) 文件。
+查看此插件的命令请移步 [COMMANDS.md](https://github.com/SNWCreations/BattleForMoney/blob/main/COMMANDS.md) 文件。
 
 ### **注意:**
 * 此插件支持的 Minecraft 版本: **1.16.X** ，作者已测试了 1.16.5 ，理论上 1.16 的所有子版本都可以使用。
@@ -31,23 +31,11 @@
 以下内容需要你已经安装了 Maven 。
 
 自行 clone 此仓库，在目录根目录下运行命令 'mvn clean package' 即可。
-构建完成后，在 target 文件夹下的 'rfm-X.X.X.jar' 即为成品。
+构建完成后，在 target 文件夹下的 'bfm-X.X.X.jar' 即为成品。
 
 ### Releases
 
 在右侧的 Releases 中下载！
-
-## 关于本插件一些机制的解释
-
-若仍有问题，可以在 Issues 中提问。
-
-### 队伍 & 组
-
-队伍可以理解为阵营，在本插件中只有 猎人 和 逃走队员 这两个队伍。
-
-而 组 是为管理员更好的管理猎人设计的，只有猎人能成为某个组的一员。
-
-并且，每个猎人只能加入一个组。
 
 ## 一些声明
 
@@ -57,7 +45,7 @@
 
 如果此节内容与 GPLv3 许可证的内容有冲突，以本节的内容为准。
 
-**此作品 是我的个人作品，不是来自《全员逃走中》节目组官方的作品，且与《全员逃走中》节目没有关联。**
+**此作品 是我的个人作品，不是来自《全员战斗中》节目组官方的作品，且与《全员战斗中》节目没有关联。**
 
 此作品 使用 GPLv3 作为许可证授权给您。详情请见 此仓库 的 LICENSE 文件。我对此作品保留所有可能的权利。
 

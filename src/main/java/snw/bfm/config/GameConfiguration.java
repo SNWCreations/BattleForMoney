@@ -1,11 +1,11 @@
 /*
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm.config;
@@ -27,7 +27,7 @@ public final class GameConfiguration {
         throw new UnsupportedOperationException("No snw.rfm.config.GameConfiguration instances for you!");
     }
 
-    // 因为此方法中有些地方用到了 RunForMoney.getInstance() 方法，所以不能作为 static 块。否则会因为 INSTANCE 未被设置从而导致 NullPointerException 。
+    // 因为此方法中有些地方用到了 BattleForMoney.getInstance() 方法，所以不能作为 static 块。否则会因为 INSTANCE 未被设置从而导致 NullPointerException 。
     public static void init() {
 
         // region 终止间相关处理

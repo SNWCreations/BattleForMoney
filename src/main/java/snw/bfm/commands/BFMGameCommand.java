@@ -1,11 +1,11 @@
 /*
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm.commands;
@@ -13,19 +13,19 @@ package snw.bfm.commands;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
+import dev.jorel.commandapi.arguments.ArgumentSuggestions;
 import dev.jorel.commandapi.arguments.BooleanArgument;
 import dev.jorel.commandapi.arguments.IntegerArgument;
-import dev.jorel.commandapi.arguments.LocationArgument;
-import dev.jorel.commandapi.arguments.PlayerArgument;
+import dev.jorel.commandapi.arguments.StringArgument;
 import dev.jorel.commandapi.exceptions.WrapperCommandSyntaxException;
+import org.bukkit.inventory.ItemStack;
 import snw.bfm.BattleForMoney;
-import snw.bfm.api.events.GamePostStartEvent;
-import snw.bfm.api.events.GamePreStartEvent;
+import snw.bfm.ItemRegistry;
 import snw.bfm.config.GameConfiguration;
 import snw.bfm.game.GameController;
 import snw.bfm.game.GameProcess;
 import snw.bfm.game.TeamHolder;
-import snw.bfm.tasks.HunterReleaseTimer;
+import snw.bfm.tasks.GameStartTimer;
 import snw.bfm.tasks.MainTimer;
 import snw.bfm.util.LanguageSupport;
 
@@ -34,21 +34,29 @@ import static snw.bfm.util.CommandUtil.requireNoGame;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import snw.bfm.util.PlaceHolderString;
 
-public class RFMGameCommand {
+import java.util.HashSet;
+import java.util.Set;
+
+public class BFMGameCommand {
+    private static final Set<String> seeTimerPlayers = new HashSet<>();
+
+    public static Set<String> getSeeTimerPlayers() {
+        return seeTimerPlayers;
+    }
+
     public static void register() {
-        new CommandAPICommand("rfmgame")
+        new CommandAPICommand("bfmgame")
                 .withPermission(CommandPermission.OP) // op operations in this command, so only op can use!
                 .executes((sender, args) -> {
-                    sender.sendMessage(ChatColor.GOLD + "--- RFMGame help ---");
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmgame.help.start"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmgame.help.stop"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmgame.help.pause"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmgame.help.resume"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmgame.help.respawn"));
+                    sender.sendMessage(ChatColor.GOLD + "--- BFMGame help ---");
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmgame.help.start"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmgame.help.stop"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmgame.help.pause"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmgame.help.resume"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmgame.help.respawn"));
                 })
                 .withSubcommand(
                         new CommandAPICommand("start") // equals /start
@@ -59,7 +67,7 @@ public class RFMGameCommand {
                 .withSubcommand(
                         new CommandAPICommand("start")
                                 .withArguments(
-                                        new IntegerArgument("hunterReleaseTime", 0)
+                                        new IntegerArgument("startTime", 0)
                                         // if 0, the game will start without title and subtitle.
                                         // and translation of "game.process.start.broadcast" will appear.
                                 )
@@ -80,7 +88,7 @@ public class RFMGameCommand {
                                 .executes((sender, args) -> {
                                     requireGame();
 
-                                    snw.rfm.api.GameController controller = BattleForMoney.getInstance().getGameController();
+                                    GameController controller = BattleForMoney.getInstance().getGameController();
                                     if (controller.isPaused()) {
                                         throw CommandAPI.fail(LanguageSupport.replacePlaceHolder("$commands.operation_failed$ $game.status.already_paused$"));
                                     } else {
@@ -105,25 +113,29 @@ public class RFMGameCommand {
                                 })
                 )
                 .withSubcommand(
-                        new CommandAPICommand("respawn") // equals /rfmrespawn
+                        new CommandAPICommand("item")
                                 .withArguments(
-                                        new PlayerArgument("playerToRespawn")
+                                        new StringArgument("itemName")
+                                                .replaceSuggestions(
+                                                        ArgumentSuggestions.strings(
+                                                                suggestionInfo -> ItemRegistry.getRegisteredItemNames().toArray(new String[]{})
+                                                        )
+                                                )
                                 )
-                                .executes((sender, args) -> {
-                                    requireGame();
-                                    BattleForMoney.getInstance().getGameController().respawn((Player) args[0]);
-                                })
-                )
-                .withSubcommand(
-                        new CommandAPICommand("respawn")
-                                .withArguments(
-                                        new PlayerArgument("playerToRespawn"),
-                                        new LocationArgument("location")
-                                )
-                                .executes((sender, args) -> {
-                                    requireGame();
-                                    BattleForMoney.getInstance().getGameController().respawn((Player) args[0]);
-                                    ((Player) args[0]).teleport((Location) args[1]);
+                                .executesPlayer((sender, args) -> {
+                                    ItemStack item = ItemRegistry.getRegisteredItemByName((String) args[0]);
+                                    if (item != null) {
+                                        sender.getInventory().addItem(item);
+                                        sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.operation_success"));
+                                    } else {
+                                        throw CommandAPI.fail(
+                                                new PlaceHolderString(
+                                                        LanguageSupport.replacePlaceHolder("$commands.operation_failed$ $commands.bfmitem.item_not_found$")
+                                                )
+                                                        .replaceArgument("itemName", args[0])
+                                                        .toString()
+                                        );
+                                    }
                                 })
                 )
                 .register();
@@ -135,17 +147,14 @@ public class RFMGameCommand {
         requireNoGame();
 
         TeamHolder holder = TeamHolder.getInstance();
-        if (holder.isNoHunterFound()) {
-            throw CommandAPI.fail(LanguageSupport.getTranslation("commands.start.no_hunter_found"));
-        } else if (holder.isNoRunnerFound()) {
-            throw CommandAPI.fail(LanguageSupport.getTranslation("commands.start.no_runner_found"));
+        if (holder.getPlayers().isEmpty()) {
+            throw CommandAPI.fail(LanguageSupport.getTranslation("commands.start.no_player_found"));
         } else {
-            Bukkit.getPluginManager().callEvent(new GamePreStartEvent());
 
             GameProcess newProcess = new GameProcess();
             GameController controller = new GameController(newProcess, GameConfiguration.getCoinPerSecond());
             if (time > 0) {
-                newProcess.setHunterReleaseTimer(new HunterReleaseTimer(time, newProcess));
+                newProcess.setHunterReleaseTimer(new GameStartTimer(time, newProcess));
                 newProcess.setHunterNoMoveTime(time);
                 Bukkit.broadcastMessage(ChatColor.RED + LanguageSupport.getTranslation("commands.start.starting"));
             }
@@ -156,9 +165,6 @@ public class RFMGameCommand {
             rfm.setGameProcess(newProcess);
             rfm.setGameController(controller);
             sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.start.success"));
-
-            Bukkit.getPluginManager().callEvent(new GamePostStartEvent());
-
         }
     }
 
@@ -166,10 +172,10 @@ public class RFMGameCommand {
         requireGame();
 
         BattleForMoney rfm = BattleForMoney.getInstance();
-        snw.rfm.api.GameController controller = rfm.getGameController();
+        GameController controller = rfm.getGameController();
         TeamHolder holder = TeamHolder.getInstance();
 
-        if (holder.isNoHunterFound() || holder.isNoRunnerFound() && !force) {
+        if (holder.getPlayers().isEmpty() && !force) {
             throw CommandAPI.fail(LanguageSupport.replacePlaceHolder("$commands.operation_failed$ $commands.resume.no_player_online$"));
         } else {
             if (controller.isPaused()) {

@@ -1,4 +1,4 @@
-# RunForMoney - 命令说明书
+# BattleForMoney - 命令说明书
 
 其实是我一个个照着 plugin.yml 抄的 (笑) 。做了些修改，更详细。
 
@@ -6,18 +6,18 @@
 
 用 `<>` 包裹的参数为必填参数，用 `[]` 包裹的参数为可选参数。
 
-## /rfmgame
+## /bfmgame
 
 一个对逃走中游戏进行基本操作的命令。
 
 需要管理员权限来执行此命令以及此命令的所有子命令。
 
-用法: `/rfmgame <start/stop/pause/resume/respawn> [arguments..]`
+用法: `/bfmgame <start/stop/pause/resume/respawn> [arguments..]`
 
 参数:
 
     start: 启动游戏。
-        hunterReleaseTime: 此参数会影响猎人释放的时间。默认使用配置项 'hunter_release_time' 指定的值。
+        startTime: 此参数会影响猎人释放的时间。默认使用配置项 'hunter_release_time' 指定的值。
     stop: 强制停止游戏。
     pause: 暂停游戏。
     resume: 继续游戏。

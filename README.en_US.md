@@ -1,6 +1,6 @@
 # Run For Money
 
-[Go to Chinese Version](https://github.com/SNWCreations/RunForMoney/blob/main/README.md) [English version now]
+[Go to Chinese Version](https://github.com/SNWCreations/BattleForMoney/blob/main/README.md) [English version now]
 
 This plugin is my second work. It was made after watching the Minecraft version of the series "Run For Money" by @骑单车の茂茂 (https://space.bilibili.com/8957291).
 
@@ -8,13 +8,13 @@ This plugin is my second work. It was made after watching the Minecraft version 
 
 * Basic squad
 * Administrators can control the game flow
-* ~~There is a simple event mechanism, which can be monitored in the snw.rfm.api.events package.~~ **The API content is now split. See [RFM API](https://github.com/SNWCreations/RunForMoneyAPI).**
+* ~~There is a simple event mechanism, which can be monitored in the snw.rfm.api.events package.~~ **The API content is now split. See [RFM API](https://github.com/SNWCreations/BattleForMoneyAPI).**
 * Strong configurability, the configuration file has detailed comments for easy understanding.
 * Hunter grouping, suitable for certain tasks where hunters will be released if they fail, they can be released individually or in groups.
 * Rich commands, friendly to administrators.
 * Game data query is convenient.
 
-To view the commands of this plugin, please go to the [COMMANDS.md](https://github.com/SNWCreations/RunForMoney/blob/main/COMMANDS.md) file.
+To view the commands of this plugin, please go to the [COMMANDS.md](https://github.com/SNWCreations/BattleForMoney/blob/main/COMMANDS.md) file.
 
 ### **Notice:**
 * Minecraft version supported by this plugin: **1.16.X** , the author has tested 1.16.5 , in theory all sub-versions of 1.16 can be used.

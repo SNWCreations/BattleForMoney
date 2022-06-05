@@ -1,5 +1,5 @@
 {
-  "setup.no_gameworld": "Warning: Unable to find a map for the game, please fix the error and execute the /rfmreload command to reload the endroom location.",
+  "setup.no_gameworld": "Warning: Unable to find a map for the game, please fix the error and execute the /bfmreload command to reload the endroom location.",
   "setup.author_info": "This plugin was made by SNWCreations @ MCBBS.NET",
   "setup.load_data": "Load data...",
   "setup.register_command": "Register command...",
@@ -31,12 +31,8 @@
   "update.failed.connect": "Error connecting to Github API or reading data",
   "update.failed.invalid_data": "Could not parse the data from the Github API because the returned data is not a valid JSON",
 
-  "item.ep": "Abandon Pickaxe",
-  "item.hpc": "Hunter Pause Card",
-
-
   "event.join.welcome": "============ Welcome! ===============",
-  "event.join.plugin_info": "This server is running Run For Money plugin, version ",
+  "event.join.plugin_info": "This server is running Battle For Money plugin, version ",
   "event.join.author": "Plugin author: SNWCreations @ MCBBS.NET",
   "event.join.bilibili": "Bilibili: @SNWCreations (Click me!)",
   "event.join.bilibili_hover": "Visit my Bilibili homepage!",
@@ -58,7 +54,8 @@
   "event.hunter_activated": "You have been activated",
   "event.runner_activated": "You are disabled",
 
-  "event.hpc_used": "$playerName$ used a hunter pause card. Hunter paused for $time$ seconds.",
+  "event.player_out": "$playerName$ was eliminated by $damager$ .",
+  "event.start_timer_message": "§cGame will start after $time$ seconds",
 
 
   "game.player_remaining": "$remaining$ players remaining.",
@@ -86,6 +83,7 @@
 
   "game.time_remaining_actionbar": "Time remaining: ",
 
+  "commands.start.no_player_found": "No player in the team found. Game won't start.",
 
   "commands.not_enough_args": "Not enough arguments!",
   "commands.not_enough_or_too_many_args": "Not enough or too many arguments!",
@@ -109,7 +107,7 @@
 
   "commands.resume.no_player_online": "Because neither team is online.",
 
-  "commands.rfmitem.item_not_found": "The requested item $itemName$ does not exist.",
+  "commands.bfmitem.item_not_found": "The requested item $itemName$ does not exist.",
 
   "commands.grouplist.empty": "No group exists.",
   "commands.grouplist.header": "The following groups exist: ",
@@ -176,7 +174,7 @@
   "commands.team.hunter.leave_runner_team": "Detected that you were in a runner team and has now automatically left the team.",
   "commands.team.leave.not_in_team": "You are not on any team.",
   "commands.team.leave.not_in_team_multi": "$playerName$ is not in any team.",
-  "commands.team.leave.batch_to_player": "Because of an administrator action, you are no longer part of the $teamName$ team",
+  "commands.team.leave.batch_to_player": "Because of an administrator action, you are no longer part of your team.",
   "commands.team.leave.success": "You leave your team, which means that when the game starts, if you haven't selected a team, you will be a spectator.",
   "commands.team.leave.success_count": "$count$ players were removed from their team.",
   "commands.team.runner.success": "You are now a runner!",
@@ -188,25 +186,17 @@
   "commands.prc.runner_header": "Alive runners: ",
   "commands.prc.not_in_game_header": "Players who are not in the game (including arrestees and abstention): ",
 
-  "commands.rfmgame.help.start": "/rfmgame start [hunterReleaseTime] - start the game",
-  "commands.rfmgame.help.stop": "/rfmgame stop - force stop the game",
-  "commands.rfmgame.help.pause": "/rfmgame pause - pause existing game",
-  "commands.rfmgame.help.resume": "/rfmgame resume [force] - resume existing game",
-  "commands.rfmgame.help.respawn": "/rfmgame respawn <playerToRespawn> - respawns the player named with the value of the parameter playerToRespawn",
+  "commands.bfmgame.help.start": "/bfmgame start [startTime] - start the game",
+  "commands.bfmgame.help.stop": "/bfmgame stop - force stop the game",
+  "commands.bfmgame.help.pause": "/bfmgame pause - pause existing game",
+  "commands.bfmgame.help.resume": "/bfmgame resume [force] - resume existing game",
+  "commands.bfmgame.help.respawn": "/bfmgame respawn <playerToRespawn> - respawns the player named with the value of the parameter playerToRespawn",
 
-  "commands.rfmdata.help.coin": "/rfmdata coin - show coin list",
-  "commands.rfmdata.help.exportcoin": "/rfmdata exportcoin - export coin list",
-  "commands.rfmdata.help.playerremaining": "/rfmdata playerremaining - displays a list of remaining players and captured players",
-  "commands.rfmdata.help.timer": "/rfmdata timer - causes the game to show the remaining time on your Actionbar while the game is running",
-  "commands.rfmdata.help.settings": "/rfmdata settings - view plugin configuration",
-  "commands.rfmdata.help.endroom": "/rfmdata endroom - set the end room location",
-  "commands.rfmdata.help.reload": "/rfmdata reload - reload plugin configuration from disk",
-
-  "commands.rfmgroup.help.join": "/rfmgroup join <groupName> - join the group named with the value of the parameter groupName",
-  "commands.rfmgroup.help.leave": "/rfmgroup leave - leave the group",
-  "commands.rfmgroup.help.activate": "/rfmgroup activate <groupName> - activate the group named with the value of the parameter groupName",
-  "commands.rfmgroup.help.deactivate": "/rfmgroup deactivate <groupName> - deactivate the group named with the value of the parameter groupName",
-  "commands.rfmgroup.help.create": "/rfmgroup create <groupName> - create a group named with the value of parameter groupName",
-  "commands.rfmgroup.help.delete": "/rfmgroup delete <groupName> - delete the group named with the value of the parameter groupName",
-  "commands.rfmgroup.help.list": "/rfmgroup list - show created groups"
+  "commands.bfmdata.help.coin": "/bfmdata coin - show coin list",
+  "commands.bfmdata.help.exportcoin": "/bfmdata exportcoin - export coin list",
+  "commands.bfmdata.help.playerremaining": "/bfmdata playerremaining - displays a list of remaining players and captured players",
+  "commands.bfmdata.help.timer": "/bfmdata timer - causes the game to show the remaining time on your Actionbar while the game is running",
+  "commands.bfmdata.help.settings": "/bfmdata settings - view plugin configuration",
+  "commands.bfmdata.help.endroom": "/bfmdata endroom - set the end room location",
+  "commands.bfmdata.help.reload": "/bfmdata reload - reload plugin configuration from disk"
 }

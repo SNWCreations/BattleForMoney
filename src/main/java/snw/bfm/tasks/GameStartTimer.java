@@ -1,11 +1,11 @@
 /**
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm.tasks;
@@ -13,8 +13,6 @@ package snw.bfm.tasks;
 import net.md_5.bungee.api.chat.TextComponent;
 import snw.bfm.BattleForMoney;
 import snw.bfm.game.GameProcess;
-import snw.bfm.game.TeamHolder;
-import snw.bfm.group.GroupHolder;
 import snw.bfm.util.LanguageSupport;
 import snw.bfm.util.PlaceHolderString;
 import snw.bfm.util.SendingActionBarMessage;
@@ -23,10 +21,10 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-public final class HunterReleaseTimer extends BaseCountDownTimer {
+public final class GameStartTimer extends BaseCountDownTimer {
     private final GameProcess process;
 
-    public HunterReleaseTimer(int time, GameProcess process) {
+    public GameStartTimer(int time, GameProcess process) {
         super(time);
         Validate.notNull(process, "We need a process to bind!");
         this.process = process;
@@ -34,12 +32,6 @@ public final class HunterReleaseTimer extends BaseCountDownTimer {
 
     @Override
     protected void onZero() {
-        TeamHolder holder = TeamHolder.getInstance();
-        GroupHolder gh = GroupHolder.getInstance();
-
-        // 2022/2/6 用 Stream 优化。
-        holder.getHunters().stream().filter(IT -> gh.findByPlayer(IT) != null).forEach(holder::addEnabledHunter);
-
         new SendingActionBarMessage(new TextComponent(ChatColor.DARK_RED + "" + ChatColor.BOLD + LanguageSupport.getTranslation("event.hunter_released"))).start();
         process.setHunterReleaseTimer(null);
         process.getMainTimer().start(BattleForMoney.getInstance());
@@ -60,7 +52,7 @@ public final class HunterReleaseTimer extends BaseCountDownTimer {
             new SendingActionBarMessage(
                     new TextComponent(
                             new PlaceHolderString(ChatColor.RED +
-                                    LanguageSupport.getTranslation("event.hunter_release_timer_message"))
+                                    LanguageSupport.getTranslation("event.start_timer_message"))
                                         .replaceArgument("time",
                                                 color + "" + ChatColor.BOLD + secs + ChatColor.RESET + "" + ChatColor.RED)
                                     .toString())

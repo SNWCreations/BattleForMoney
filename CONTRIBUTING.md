@@ -1,6 +1,6 @@
-# RunForMoney - 贡献指南
+# BattleForMoney - 贡献指南
 
-[现在是中文版本] [Go to English Version](https://github.com/SNWCreations/RunForMoney/blob/main/CONTRIBUTING.en_US.md)
+[现在是中文版本] [Go to English Version](https://github.com/SNWCreations/BattleForMoney/blob/main/CONTRIBUTING.en_US.md)
 
 很感谢您对我这个项目的支持！
 

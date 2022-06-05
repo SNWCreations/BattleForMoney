@@ -1,11 +1,11 @@
 /*
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm.tasks;
@@ -38,7 +38,7 @@ public final class Updater extends Thread {
 
         StringBuilder response;
         try {
-            URL url = new URL("https://api.github.com/repos/SNWCreations/RunForMoney/releases/latest");
+            URL url = new URL("https://api.github.com/repos/SNWCreations/BattleForMoney/releases/latest");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(8000);
@@ -94,7 +94,7 @@ public final class Updater extends Thread {
     }
 
     private void log(Level level, String message) {
-        Logger.getLogger("RunForMoney").log(level, "[RunForMoney] " + message);
+        Logger.getLogger("BattleForMoney").log(level, "[BattleForMoney] " + message);
     }
 
     private void log(String message) {

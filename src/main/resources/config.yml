@@ -10,24 +10,17 @@ gameworld: "world"
 # 插件语言，默认为 zh_CN
 language: "zh_CN"
 
-# 猎人释放时间，以秒为单位，遇到无效值时默认使用 60 秒。
+# 游戏开始时间，以秒为单位，遇到无效值时默认使用 10 秒。
 hunter_release_time: 60
 # 游戏总时长，以分钟为单位，遇到无效值时默认 30 分钟。
 game_time: 30
 # 终止间 位置，格式 x y z ，遇到无效值时会发出警告，若游戏时玩家被淘汰但没有可用的终止间 位置，玩家将会在被淘汰的位置成为旁观者。
 end_room_location: ""
-# 每秒获得的硬币的数量，遇到无效值时默认使用 100 / 秒 。
+# 每秒失去的硬币的数量，遇到无效值时默认使用 100 / 秒 。
 coin_per_second: 100
-# 当所有玩家均已不在逃走中游戏内(指被捕或弃权)时，插件该如何处理现有游戏。true 为直接终止游戏，false 为由管理员决定。默认组为 true 。
-stop_game_on_no_runner_alive: true
+# 开局拥有的游戏币总量。默认 180000 。
+default_coin_amount: 180000
+# 战斗球的冷却时间，默认 5 秒。
+fightball_cooldown: 5
 # 当逃走队员被捕时，当时拥有的B币该乘以几？默认值为 0.1 (即 1/10) 。
 coin_multiplier_on_be_catched: 0.1
-
-####### ------------ 物品配置 ------------ #######
-# 猎人暂停卡 物品类型，也就是把哪种物品看做 猎人暂停卡 处理。默认值: 金锭。
-hpc_type: "minecraft:gold_ingot"
-# 猎人暂停卡有效时间，单位: 秒，默认值: 3 秒。
-hpc_time: 3
-
-# 弃权镐可以挖掉的方块。遇到无效值时，默认为钻石块。
-exiting_pickaxe_minable_block: "minecraft:diamond_block"

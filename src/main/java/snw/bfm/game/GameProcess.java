@@ -1,75 +1,49 @@
 /**
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm.game;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
 import snw.bfm.BattleForMoney;
-import snw.bfm.api.events.GamePauseEvent;
-import snw.bfm.api.events.GameResumeEvent;
-import snw.bfm.api.events.GameStopEvent;
-import snw.bfm.commands.admin.RFMTimerCommand;
-import snw.bfm.tasks.HunterReleaseTimer;
+import snw.bfm.commands.BFMGameCommand;
+import snw.bfm.tasks.GameStartTimer;
 import snw.bfm.tasks.MainTimer;
 import snw.bfm.util.LanguageSupport;
 import snw.bfm.util.PlaceHolderString;
 import snw.bfm.util.SendingActionBarMessage;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.ServerOperator;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.Nullable;
-
-import static snw.bfm.Util.removeAllPotionEffect;
-
 import java.util.stream.Collectors;
 
+import static snw.bfm.util.Util.removeAllPotionEffect;
+
 public final class GameProcess {
-    private HunterReleaseTimer hrl;
+    private GameStartTimer hrl;
     private MainTimer mainTimer;
     private int noMoveTime = 0;
-    private static TextComponent yes;
-    private static TextComponent no;
-
-    public static void init() {
-        yes = new TextComponent(LanguageSupport.getTranslation("game.process.stop_choice.yes"));
-        yes.setColor(net.md_5.bungee.api.ChatColor.RED);
-        yes.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(LanguageSupport.getTranslation("game.process.stop_choice.yes_hover"))));
-        yes.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/forcestop"));
-        no = new TextComponent(LanguageSupport.getTranslation("game.process.stop_choice.no"));
-        no.setColor(net.md_5.bungee.api.ChatColor.GRAY);
-        no.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(LanguageSupport.getTranslation("game.process.stop_choice.no_hover"))));
-        no.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tellraw @a {\"text\": \"" + LanguageSupport.getTranslation("game.process.stop_choice.no_say_content") + "\", \"color\": \"red\", \"bold\": true}"));
-    }
 
     public void start() {
-        BattleForMoney rfm = BattleForMoney.getInstance();
-        rfm.getCoinEarned().clear();
+        BattleForMoney bfm = BattleForMoney.getInstance();
+        bfm.getCoinEarned().clear();
         TeamHolder h = TeamHolder.getInstance();
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (h.isHunter(p)) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1, false, false));
-            } else if (!h.isRunner(p)) {
+            if (h.isNotInGame(p)) {
                 p.sendMessage(ChatColor.RED + LanguageSupport.getTranslation("game.process.start.no_team"));
                 p.setGameMode(GameMode.SPECTATOR);
             }
         }
-        Bukkit.getScheduler().runTaskTimer(rfm, () -> {
+        Bukkit.getScheduler().runTaskTimer(bfm, () -> {
             int prev = getHunterNoMoveTime();
             if (prev > 0) {
                 setHunterNoMoveTime(prev - 1);
@@ -77,7 +51,7 @@ public final class GameProcess {
         }, 20L, 20L);
 
         if (hrl != null) {
-            hrl.start(rfm);
+            hrl.start(bfm);
             Bukkit.getOnlinePlayers().forEach(IT ->
                     IT.sendTitle(ChatColor.RED + "" + ChatColor.BOLD +
                                     LanguageSupport.getTranslation("game.process.start.title"),
@@ -88,7 +62,7 @@ public final class GameProcess {
                             20, 60, 10)
             );
         } else {
-            mainTimer.start(rfm);
+            mainTimer.start(bfm);
         }
 
         Bukkit.getScheduler().runTaskTimer(BattleForMoney.getInstance(), () -> {
@@ -97,23 +71,23 @@ public final class GameProcess {
                     new TextComponent(LanguageSupport.getTranslation("game.time_remaining_actionbar") +
                             (mainTimer.getTimeLeft() / 60) + ":" + (sec.length() == 1 ? ("0" + sec) : sec)),
                     Bukkit.getOnlinePlayers().stream()
-                            .filter(IT -> RFMTimerCommand.getSeePlayers().contains(IT.getName()))
+                            .filter(IT -> BFMGameCommand.getSeeTimerPlayers().contains(IT.getName()))
                             .collect(Collectors.toList()))
                     .start();
         }, (hrl != null) ? (hrl.getTimeLeft() + 1) * 20L : 0L, 20L);
     }
 
     public void stop() {
-        BattleForMoney rfm = BattleForMoney.getInstance();
+        BattleForMoney bfm = BattleForMoney.getInstance();
         Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + LanguageSupport.getTranslation("game.process.stop.broadcast"));
-        Bukkit.getScheduler().cancelTasks(rfm);
+        Bukkit.getScheduler().cancelTasks(bfm);
         for (Player p : Bukkit.getOnlinePlayers()) {
             removeAllPotionEffect(p);
             p.setGameMode(GameMode.ADVENTURE);
         }
         TeamHolder.getInstance().cleanup();
-        rfm.setGameProcess(null);
-        rfm.setGameController(null);
+        bfm.setGameProcess(null);
+        bfm.setGameController(null);
     }
 
     public void pause() {
@@ -123,62 +97,31 @@ public final class GameProcess {
         } else {
             mainTimer.cancel();
         }
-        Bukkit.getPluginManager().callEvent(new GamePauseEvent());
     }
 
     public void resume() {
         Bukkit.broadcastMessage(ChatColor.GREEN + LanguageSupport.getTranslation("game.process.resume.broadcast"));
         if (hrl != null) {
-            HunterReleaseTimer nhrl = new HunterReleaseTimer(hrl.getTimeLeft(), this);
+            GameStartTimer nhrl = new GameStartTimer(hrl.getTimeLeft(), this);
             hrl = nhrl;
             nhrl.start(BattleForMoney.getInstance());
         } else { // 防止猎人还没放出就开始计算B币
-            BattleForMoney rfm = BattleForMoney.getInstance();
-            MainTimer mt = new MainTimer(mainTimer.getTimeLeft(), rfm.getGameController());
-            mt.setTasks(mainTimer.getTasks());
+            BattleForMoney bfm = BattleForMoney.getInstance();
+            MainTimer mt = new MainTimer(mainTimer.getTimeLeft(), bfm.getGameController());
             mainTimer = mt;
-            mt.start(rfm);
+            mt.start(bfm);
         }
-        Bukkit.getPluginManager().callEvent(new GameResumeEvent());
     }
 
     public void setHunterNoMoveTime(int time) {
         noMoveTime = time;
     }
 
-    public boolean isHunterCanMove() {
-        return noMoveTime <= 0;
-    }
-
     public int getHunterNoMoveTime() {
         return noMoveTime;
     }
 
-    public void checkStop() {
-        if (TeamHolder.getInstance().getRunners().size() <= 0) {
-            if (BattleForMoney.getInstance().getConfig().getBoolean("stop_game_on_no_runner_alive", true)) {
-                Bukkit.getPluginManager().callEvent(new GameStopEvent());
-                stop();
-            } else {
-                if (hrl != null) {
-                    hrl.cancel();
-                } else {
-                    mainTimer.cancel();
-                }
-                Bukkit.broadcastMessage(ChatColor.RED + LanguageSupport.getTranslation("game.process.stop_choice.broadcast"));
-                Bukkit.getOnlinePlayers().stream()
-                        .filter(ServerOperator::isOp)
-                        .forEach(IT -> IT.spigot().sendMessage(ChatMessageType.CHAT, yes, no));
-            }
-        }
-    }
-
-    @Nullable
-    public HunterReleaseTimer getHunterReleaseTimer() {
-        return hrl;
-    }
-
-    public void setHunterReleaseTimer(HunterReleaseTimer hrl) {
+    public void setHunterReleaseTimer(GameStartTimer hrl) {
         this.hrl = hrl;
     }
 

@@ -1,11 +1,11 @@
 /*
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm.commands;
@@ -14,23 +14,17 @@ import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.LocationArgument;
-import snw.bfm.ItemRegistry;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import snw.bfm.BattleForMoney;
-import snw.bfm.commands.admin.RFMTimerCommand;
+import snw.bfm.ItemRegistry;
 import snw.bfm.config.GameConfiguration;
 import snw.bfm.config.Preset;
-import snw.bfm.game.GameProcess;
 import snw.bfm.game.TeamHolder;
 import snw.bfm.processor.EventProcessor;
 import snw.bfm.util.LanguageSupport;
 import snw.bfm.util.NickSupport;
 import snw.bfm.util.PlaceHolderString;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-
-import static snw.bfm.Util.sortDescend;
-import static snw.bfm.util.CommandUtil.requireGame;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,23 +35,26 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-public class RFMDataCommand {
+import static snw.bfm.util.CommandUtil.requireGame;
+import static snw.bfm.util.Util.sortDescend;
+
+public class BFMDataCommand {
 
     // SDF copied from ExportListCommand class.
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
 
     public static void register() {
-        new CommandAPICommand("rfmdata")
+        new CommandAPICommand("bfmdata")
                 // if no subcommand specified, this statement will be executed.
                 .executes((sender, args) -> {
-                    sender.sendMessage(ChatColor.GOLD + "--- RFMData help ---");
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.coin"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.exportcoin"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.playerremaining"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.timer"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.settings"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.endroom"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmdata.help.reload"));
+                    sender.sendMessage(ChatColor.GOLD + "--- BFMData help ---");
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.coin"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.exportcoin"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.playerremaining"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.timer"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.settings"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.endroom"));
+                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.bfmdata.help.reload"));
                 })
                 .withSubcommand(
                         new CommandAPICommand("coin") // equals /coinlist
@@ -111,7 +108,7 @@ public class RFMDataCommand {
                                 .executes((sender, args) -> {
                                     requireGame();
 
-                                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.prc.runner_header") + String.join(", ", TeamHolder.getInstance().getRunners()));
+                                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.prc.runner_header") + String.join(", ", TeamHolder.getInstance().getPlayers()));
                                     String nigText = String.join(",", TeamHolder.getInstance().getOutPlayers());
                                     Set<String> giveUp = TeamHolder.getInstance().getGiveUpPlayers();
                                     if (!giveUp.isEmpty()) {
@@ -123,11 +120,11 @@ public class RFMDataCommand {
                 .withSubcommand(
                         new CommandAPICommand("timer") // equals /rfmtimer
                                 .executesPlayer((sender, args) -> {  // only player can do this
-                                        if (RFMTimerCommand.getSeePlayers().contains(sender.getName())) {
-                                            RFMTimerCommand.getSeePlayers().remove(sender.getName());
+                                        if (BFMGameCommand.getSeeTimerPlayers().contains(sender.getName())) {
+                                            BFMGameCommand.getSeeTimerPlayers().remove(sender.getName());
                                             sender.sendMessage(ChatColor.RED + LanguageSupport.getTranslation("commands.rfmtimer.disabled"));
                                         } else {
-                                            RFMTimerCommand.getSeePlayers().add(sender.getName());
+                                            BFMGameCommand.getSeeTimerPlayers().add(sender.getName());
                                             sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rfmtimer.enabled"));
                                         }
                                 })
@@ -172,7 +169,7 @@ public class RFMDataCommand {
                                 }))
                 )
                 .withSubcommand(
-                        new CommandAPICommand("reload") // equals /rfmreload
+                        new CommandAPICommand("reload") // equals /bfmreload
                                 .withPermission(CommandPermission.OP)
                                 .executes((sender, args) -> {
                                     BattleForMoney.getInstance().reloadConfig();
@@ -180,11 +177,9 @@ public class RFMDataCommand {
                                     GameConfiguration.init();
                                     Preset.init();
                                     NickSupport.init();
-                                    ItemRegistry.unregisterItem("ep");
-                                    ItemRegistry.unregisterItem("hpc");
+                                    ItemRegistry.unregisterItem("fightball");
                                     BattleForMoney.getInstance().registerInternalItems();
                                     EventProcessor.init();
-                                    GameProcess.init();
                                     sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.operation_success"));
                                 })
                 )

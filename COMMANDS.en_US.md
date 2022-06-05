@@ -1,4 +1,4 @@
-# RunForMoney - command manual
+# BattleForMoney - command manual
 
 In fact, I copied them one by one according to the plugin.yml (laughs). Made some changes, more details.
 
@@ -6,18 +6,18 @@ Some commands with parameters will specify the command format, and those without
 
 Parameters wrapped with `<>` are required parameters, and parameters wrapped with `[]` are optional parameters.
 
-## /rfmgame
+## /bfmgame
 
 A command that performs basic operations on the runaway game.
 
 Administrator privileges are required to execute this command and all subcommands of this command.
 
-Usage: `/rfmgame <start/stop/pause/resume/respawn> [arguments..]`
+Usage: `/bfmgame <start/stop/pause/resume/respawn> [arguments..]`
 
 parameter:
 
     start: start the game.
-        hunterReleaseTime: This parameter affects the release time of hunters. By default, the value specified by the configuration item 'hunter_release_time' is used.
+        startTime: This parameter affects the release time of hunters. By default, the value specified by the configuration item 'hunter_release_time' is used.
     stop: Force stop the game.
     pause: Pause the game.
     resume: resume the game.

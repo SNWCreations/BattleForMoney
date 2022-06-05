@@ -2,7 +2,7 @@
 
 [现在是中文版本] [Go to English Version](https://github.com/SNWCreations/BattleForMoney/blob/main/README.en_US.md)
 
-这是 [SNWCreations/RunForMoney](https://github.com/SNWCreations/RunForMoney) 分支 dev/1.9 的 Fork 。
+这是 [SNWCreations/BattleForMoney](https://github.com/SNWCreations/BattleForMoney) 分支 dev/1.9 的 Fork 。
 
 实现了 战斗中 游戏系统。
 

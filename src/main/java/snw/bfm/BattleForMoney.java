@@ -1,43 +1,35 @@
 /**
- * This file is part of RunForMoney.
+ * This file is part of BattleForMoney.
  *
- * RunForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * BattleForMoney is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * RunForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * BattleForMoney is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with RunForMoney. If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along with BattleForMoney. If not, see <https://www.gnu.org/licenses/>.
  */
 
 package snw.bfm;
 
-import de.tr7zw.changeme.nbtapi.NBTItem;
-import snw.bfm.commands.RFMDataCommand;
-import snw.bfm.commands.RFMGameCommand;
-import snw.bfm.commands.RFMGroupCommand;
-import snw.bfm.commands.RFMTeamCommand;
-import snw.bfm.config.GameConfiguration;
-import snw.bfm.config.Preset;
-import snw.bfm.game.GameProcess;
-import snw.bfm.game.TeamHolder;
-import snw.bfm.processor.EventProcessor;
-import snw.bfm.processor.ExitingPickaxeProcessor;
-import snw.bfm.processor.HunterPauseCardProcessor;
-import snw.bfm.tasks.Updater;
-import snw.bfm.util.LanguageSupport;
-import snw.bfm.util.NickSupport;
-import snw.bfm.util.PlaceHolderString;
-
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
+import snw.bfm.commands.BFMDataCommand;
+import snw.bfm.commands.BFMGameCommand;
+import snw.bfm.commands.BFMTeamCommand;
+import snw.bfm.config.GameConfiguration;
+import snw.bfm.config.Preset;
+import snw.bfm.game.GameController;
+import snw.bfm.game.GameProcess;
+import snw.bfm.processor.EventProcessor;
+import snw.bfm.tasks.Updater;
+import snw.bfm.util.LanguageSupport;
+import snw.bfm.util.NickSupport;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,15 +52,14 @@ public final class BattleForMoney extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         INSTANCE = this; // 2022/1/29 把 INSTANCE 引用提前，便于 Util 操作实例。
-        new Metrics(this, 14980); // 2022/4/19 Hello bStats!
 
         LanguageSupport.loadLanguage(getConfig().getString("language", "zh_CN"));
 
         ConsoleCommandSender consoleSender = Bukkit.getConsoleSender();
         PluginManager pluginManager = Bukkit.getPluginManager();
 
-        consoleSender.sendMessage("[RunForMoney] " + ChatColor.GREEN + "============ Run FOR Money ============");
-        consoleSender.sendMessage("[RunForMoney] " + ChatColor.GREEN + LanguageSupport.getTranslation("setup.author_info"));
+        consoleSender.sendMessage("[BattleForMoney] " + ChatColor.GREEN + "========= Battle FOR Money =========");
+        consoleSender.sendMessage("[BattleForMoney] " + ChatColor.GREEN + LanguageSupport.getTranslation("setup.author_info"));
 
         Logger ll = getLogger();
         ll.info(LanguageSupport.getTranslation("setup.load_data"));
@@ -76,21 +67,18 @@ public final class BattleForMoney extends JavaPlugin {
         Preset.init();
         NickSupport.init(); // v1.8.0 NickSupport!
         EventProcessor.init();
-        TeamHolder.getInstance().init();
 
         registerInternalItems();
 
         ll.info(LanguageSupport.getTranslation("setup.register_command"));
         // region 注册命令
-        RFMTeamCommand.register();
-        RFMGameCommand.register();
-        RFMDataCommand.register();
-        RFMGroupCommand.register();
+        BFMTeamCommand.register();
+        BFMGameCommand.register();
+        BFMDataCommand.register();
         // endregion
 
         ll.info(LanguageSupport.getTranslation("setup.register_event_processor"));
         pluginManager.registerEvents(new EventProcessor(), this);
-        pluginManager.registerEvents(new ExitingPickaxeProcessor(), this);
 
         getLogger().info(LanguageSupport.getTranslation("setup.complete"));
 
@@ -134,36 +122,13 @@ public final class BattleForMoney extends JavaPlugin {
     }
 
     public void registerInternalItems() {
-        // region 弃权镐
-        ItemStack ep = new ItemStack(Material.WOODEN_PICKAXE);
-        ItemMeta epmeta = ep.getItemMeta();
-        //noinspection ConstantConditions
-        epmeta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + LanguageSupport.getTranslation("item.ep"));
-        Damageable converted_meta = (Damageable) epmeta;
-        converted_meta.setDamage(58);
-        ep.setItemMeta((ItemMeta) converted_meta);
-        NBTItem item = new NBTItem(ep);
-        item.getStringList("CanDestroy").add(BattleForMoney.getInstance().getConfig().getString("exiting_pickaxe_minable_block", "minecraft:diamond_block"));
-        ItemStack EXITING_PICKAXE = item.getItem();
-        ItemRegistry.registerItem("ep", EXITING_PICKAXE);
-        // endregion
-
-        // region 猎人暂停卡 (2022/1/30)
-        Material hpctype = Material.matchMaterial(BattleForMoney.getInstance().getConfig().getString("hpc_type", "minecraft:gold_ingot"));
-        if (hpctype == null) {
-            Bukkit.getConsoleSender().sendMessage("[RunForMoney] " + ChatColor.YELLOW +
-                    new PlaceHolderString(
-                            LanguageSupport.getTranslation("setup.config.item.invalid_type")).replaceArgument("itemName", LanguageSupport.getTranslation("item.hpc")));
-        } else {
-            ItemStack hpc = new ItemStack(hpctype);
-            ItemMeta hpcmeta = hpc.getItemMeta();
-            assert hpcmeta != null;
-            hpcmeta.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + LanguageSupport.getTranslation("item.hpc"));
-            hpc.setItemMeta(hpcmeta);
-            HunterPauseCardProcessor hpcp = new HunterPauseCardProcessor();
-            ItemRegistry.registerItem("hpc", hpc, hpcp);
-            Bukkit.getPluginManager().registerEvents(hpcp, this);
-        }
+        // region 战斗球
+        final ItemStack ball = new ItemStack(Material.SNOWBALL);
+        final ItemMeta ballMeta = ball.getItemMeta();
+        assert ballMeta != null;
+        ballMeta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "战斗球");
+        ball.setItemMeta(ballMeta);
+        ItemRegistry.registerItem("fightball", ball);
         // endregion
     }
 }

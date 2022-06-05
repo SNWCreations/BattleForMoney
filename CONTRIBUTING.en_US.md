@@ -1,6 +1,6 @@
-# RunForMoney - Contribution Guidelines
+# BattleForMoney - Contribution Guidelines
 
-[前往中文版本](https://github.com/SNWCreations/RunForMoney/blob/main/CONTRIBUTING.md) [English version now]
+[前往中文版本](https://github.com/SNWCreations/BattleForMoney/blob/main/CONTRIBUTING.md) [English version now]
 
 Thank you so much for supporting my project!
 

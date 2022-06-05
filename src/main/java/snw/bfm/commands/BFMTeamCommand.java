@@ -78,7 +78,7 @@ public class BFMTeamCommand {
     private static void join(CommandSender sender, String teamName, String[] players) throws WrapperCommandSyntaxException {
         requireNoGame();
 
-        if (Arrays.asList("player", "ninja").contains(teamName)) {
+        if (!Arrays.asList("player", "ninja").contains(teamName)) {
             throw CommandAPI.fail("Impossible situation happened!"); // Actually, this statement won't have chance to be executed.
         }
 

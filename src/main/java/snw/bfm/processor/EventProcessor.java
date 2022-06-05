@@ -150,9 +150,15 @@ public final class EventProcessor implements Listener {
 
     @EventHandler
     public void onSnowballDamage(EntityDamageByEntityEvent event) {
+        if (BattleForMoney.getInstance().getGameProcess() == null) {
+            return;
+        }
+
         if (!(event.getEntity() instanceof final Player out) ||
                 !(event.getDamager() instanceof final Snowball snowball) ||
-                !(snowball.getShooter() instanceof final Player damager) // if the shooter is not a player?
+                !(snowball.getShooter() instanceof final Player damager) || // if the shooter is not a player?
+                !TeamHolder.getInstance().isNotInGame(out) ||
+                !TeamHolder.getInstance().isNotInGame(damager)
         ) return;
         event.setDamage(0);
 
@@ -180,6 +186,9 @@ public final class EventProcessor implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
+        if (BattleForMoney.getInstance().getGameProcess() == null) {
+            return;
+        }
         event.setDeathMessage(null);
 
         TeamHolder.getInstance().removePlayer(event.getEntity());
@@ -197,9 +206,13 @@ public final class EventProcessor implements Listener {
 
     @EventHandler
     public void onUnusedDamageHappen(EntityDamageEvent event) {
-        if (event.getEntity() instanceof Player &&
-                event.getCause() == EntityDamageEvent.DamageCause.FALL)
-            event.setCancelled(true);
+        if (event.getEntity() instanceof Player) {
+            boolean cancel = switch (event.getCause()) {
+                case FALL, FIRE, LAVA, DROWNING -> true;
+                default -> event.isCancelled(); // if some plugins cancel this event for some reason?
+            };
+            event.setCancelled(cancel);
+        }
     }
 
     private void pauseIfNoPlayerFound() {

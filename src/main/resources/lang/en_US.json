@@ -66,8 +66,8 @@
 
 
   "game.process.start.no_team": "You did not choose a team, so you are now a spectator.",
-  "game.process.start.title": "Run For Money",
-  "game.process.start.subtitle": "The hunter will be released in $time$ seconds",
+  "game.process.start.title": "Battle For Money",
+  "game.process.start.subtitle": "The game will start in $time$ seconds",
   "game.process.start.broadcast": "Game Start",
   "game.process.stop.broadcast": "Game stopped",
   "game.process.pause.broadcast": "The game is paused.",

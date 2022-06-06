@@ -14,9 +14,11 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 import snw.bfm.BattleForMoney;
+import snw.bfm.ItemRegistry;
 import snw.bfm.commands.BFMGameCommand;
 import snw.bfm.tasks.GameStartTimer;
 import snw.bfm.tasks.MainTimer;
@@ -41,6 +43,8 @@ public final class GameProcess {
             if (h.isNotInGame(p)) {
                 p.sendMessage(ChatColor.RED + LanguageSupport.getTranslation("game.process.start.no_team"));
                 p.setGameMode(GameMode.SPECTATOR);
+            } else {
+                p.getInventory().addItem(ItemRegistry.getRegisteredItemByName("fightball"));
             }
         }
         Bukkit.getScheduler().runTaskTimer(bfm, () -> {
@@ -84,6 +88,7 @@ public final class GameProcess {
         for (Player p : Bukkit.getOnlinePlayers()) {
             removeAllPotionEffect(p);
             p.setGameMode(GameMode.ADVENTURE);
+            p.getInventory().remove(Material.SNOWBALL);
         }
         TeamHolder.getInstance().cleanup();
         bfm.setGameProcess(null);

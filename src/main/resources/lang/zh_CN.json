@@ -65,8 +65,8 @@
 
 
   "game.process.start.no_team": "你没有选择队伍，因此你现在是旁观者。",
-  "game.process.start.title": "全员逃走中",
-  "game.process.start.subtitle": "猎人将在 $time$ 秒后放出",
+  "game.process.start.title": "全员战斗中",
+  "game.process.start.subtitle": "游戏将在 $time$ 秒后开始",
   "game.process.start.broadcast": "游戏开始",
   "game.process.stop.broadcast": "游戏结束",
   "game.process.pause.broadcast": "游戏暂停。",

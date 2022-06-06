@@ -52,8 +52,4 @@ public final class MainTimer extends BaseCountDownTimer {
         return super.getTimeLeft();
     }
 
-    public void setRemainingTime(int remainingTime) {
-        secs = remainingTime;
-    }
-
 }

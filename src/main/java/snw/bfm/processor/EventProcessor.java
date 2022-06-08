@@ -187,6 +187,8 @@ public final class EventProcessor implements Listener {
         // kill reward
         Map<String, Double> killReward = BattleForMoney.getInstance().getKillReward();
         killReward.put(damager.getName(), killReward.get(damager.getName()) + GameConfiguration.getKillReward());
+
+        BattleForMoney.getInstance().getRemovableCoin().remove(out.getName()); // remove the coin.
     }
 
     @EventHandler

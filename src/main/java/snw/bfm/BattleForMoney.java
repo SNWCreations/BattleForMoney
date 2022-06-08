@@ -40,6 +40,7 @@ public final class BattleForMoney extends JavaPlugin {
     private GameProcess gameProcess;
     private GameController gameController;
     private final Map<String, Double> coinEarned = new HashMap<>();
+    private final Map<String, Double> killReward = new HashMap<>();
 
     @Override
     public void onLoad() {
@@ -117,7 +118,7 @@ public final class BattleForMoney extends JavaPlugin {
         this.gameController = gameController;
     }
 
-    public Map<String, Double> getCoinEarned() {
+    public Map<String, Double> getRemovableCoin() {
         return coinEarned;
     }
 
@@ -133,5 +134,9 @@ public final class BattleForMoney extends JavaPlugin {
             return false;
         });
         // endregion
+    }
+
+    public Map<String, Double> getKillReward() {
+        return killReward;
     }
 }

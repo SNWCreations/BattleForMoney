@@ -42,6 +42,7 @@ import snw.bfm.util.LanguageSupport;
 import snw.bfm.util.NickSupport;
 import snw.bfm.util.PlaceHolderString;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -182,6 +183,10 @@ public final class EventProcessor implements Listener {
         );
 
         damager.setCooldown(Material.SNOWBALL, BattleForMoney.getInstance().getConfig().getInt("fightball_cooldown", 5) * 20);
+
+        // kill reward
+        Map<String, Double> killReward = BattleForMoney.getInstance().getKillReward();
+        killReward.put(damager.getName(), killReward.get(damager.getName()) + GameConfiguration.getKillReward());
     }
 
     @EventHandler

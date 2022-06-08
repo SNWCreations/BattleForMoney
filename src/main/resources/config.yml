@@ -22,3 +22,5 @@ coin_per_second: 100
 default_coin_amount: 180000
 # 战斗球的冷却时间，默认 5 秒。
 fightball_cooldown: 5
+# 当玩家击败其他玩家时，TA应该得到多少硬币的奖励？默认 50000
+killreward: 50000

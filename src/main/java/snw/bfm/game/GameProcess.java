@@ -38,7 +38,7 @@ public final class GameProcess {
 
     public void start() {
         BattleForMoney bfm = BattleForMoney.getInstance();
-        bfm.getCoinEarned().clear();
+        bfm.getRemovableCoin().clear();
         TeamHolder h = TeamHolder.getInstance();
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (h.isNotInGame(p)) {
@@ -46,7 +46,7 @@ public final class GameProcess {
                 p.setGameMode(GameMode.SPECTATOR);
             } else {
                 p.getInventory().addItem(ItemRegistry.getRegisteredItemByName("fightball"));
-                bfm.getCoinEarned().put(p.getName(), (double) GameConfiguration.getDefaultGameCoinAmount()); // init the default game coin amount
+                bfm.getRemovableCoin().put(p.getName(), (double) GameConfiguration.getDefaultGameCoinAmount()); // init the default game coin amount
             }
         }
         Bukkit.getScheduler().runTaskTimer(bfm, () -> {

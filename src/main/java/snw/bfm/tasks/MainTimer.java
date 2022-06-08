@@ -33,7 +33,7 @@ public final class MainTimer extends BaseCountDownTimer {
 
     @Override
     protected void onNewSecond() {
-        Map<String, Double> coinEarned = BattleForMoney.getInstance().getCoinEarned();
+        Map<String, Double> coinEarned = BattleForMoney.getInstance().getRemovableCoin();
         for (String i : TeamHolder.getInstance().getPlayers()) {
             coinEarned.put(i,
                     Math.max(

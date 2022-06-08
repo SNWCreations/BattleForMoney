@@ -78,4 +78,8 @@ public final class GameConfiguration {
     public static int getDefaultGameCoinAmount() {
         return BattleForMoney.getInstance().getConfig().getInt("default_coin_amount", 180000);
     }
+
+    public static int getKillReward() {
+        return BattleForMoney.getInstance().getConfig().getInt("killreward", 50000);
+    }
 }

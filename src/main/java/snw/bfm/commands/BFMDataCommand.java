@@ -59,7 +59,7 @@ public class BFMDataCommand {
                 .withSubcommand(
                         new CommandAPICommand("coin") // equals /coinlist
                                 .executes((sender, args) -> {
-                                    Map<String, Double> coinEarned = sortDescend(BattleForMoney.getInstance().getCoinEarned());
+                                    Map<String, Double> coinEarned = sortDescend(BattleForMoney.getInstance().getRemovableCoin());
                                     if (coinEarned.size() == 0) {
                                         throw CommandAPI.fail(LanguageSupport.getTranslation("commands.coinlist.empty"));
                                     } else {
@@ -76,7 +76,7 @@ public class BFMDataCommand {
                                 .withPermission(CommandPermission.OP) // only op can do this
                                 .executes((sender, args) -> {
                                     BattleForMoney rfm = BattleForMoney.getInstance();
-                                    Map<String, Double> coinEarned = rfm.getCoinEarned();
+                                    Map<String, Double> coinEarned = rfm.getRemovableCoin();
                                     if (coinEarned.size() == 0) {
                                         throw CommandAPI.fail(LanguageSupport.replacePlaceHolder("$commands.operation_failed$ $commands.coinlist.empty$"));
                                     } else {

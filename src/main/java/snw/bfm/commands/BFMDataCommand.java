@@ -66,7 +66,7 @@ public class BFMDataCommand {
                                         sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + LanguageSupport.getTranslation("commands.coinlist.header"));
                                         int a = 0;
                                         for (Map.Entry<String, Double> keypair : coinEarned.entrySet()) {
-                                            sender.sendMessage(ChatColor.GREEN + "" + ++a + ". " + keypair.getKey() + ": " + keypair.getValue());
+                                            sender.sendMessage(ChatColor.GREEN + "" + ++a + ". " + keypair.getKey() + ": " + (keypair.getValue() + BattleForMoney.getInstance().getKillReward().getOrDefault(keypair.getKey(), 0.00)));
                                         }
                                     }
                                 })
@@ -92,7 +92,7 @@ public class BFMDataCommand {
                                             // endregion
                                             int a = 0;
                                             for (Map.Entry<String, Double> e : coinEarned.entrySet()) {
-                                                writer.write(++a + "." + e.getKey() + ": " + e.getValue()); // 写入排号，玩家名，B币数量
+                                                writer.write(++a + "." + e.getKey() + ": " + (e.getValue() + BattleForMoney.getInstance().getKillReward().getOrDefault(e.getKey(), 0.00))); // 写入排号，玩家名，B币数量
                                                 writer.newLine(); // 换行，否则数据会成一大坨。。
                                             }
                                         } catch (IOException e) {

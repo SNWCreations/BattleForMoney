@@ -61,7 +61,7 @@ public final class GameController {
 
     public boolean respawn(Player player) {
         Validate.notNull(player, "Uh, we need a player to respawn!");
-        if (!player.isOnline() || TeamHolder.getInstance().isNotInGame(player)) { // 2022/4/8 如果传入猎人怎么办？？？
+        if (!player.isOnline() || TeamHolder.getInstance().isNotInGame(player)) {
             return false;
         }
         player.sendTitle(ChatColor.GREEN + "" + ChatColor.BOLD + LanguageSupport.getTranslation("event.respawn"), "", 20, 40, 10);

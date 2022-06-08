@@ -159,9 +159,9 @@
   "commands.hunter.deactivate.success_count": "有 $count$ 具猎人被禁用。",
   "commands.hunter.deactivate.failed_count": "其中，有 $count$ 个玩家因为不存在、不是猎人或已经被禁用而禁用失败。",
 
-  "commands.team.help.join": "/rfmteam join <teamName> - 加入名为 <teamName> 的队伍",
-  "commands.team.help.leave": "/rfmteam leave - 离开你所在的队伍",
-  "commands.team.help.list": "/rfmteam list - 列出所有已注册队伍的名称",
+  "commands.team.help.join": "/bfmteam join <teamName> - 加入名为 <teamName> 的队伍",
+  "commands.team.help.leave": "/bfmteam leave - 离开你所在的队伍",
+  "commands.team.help.list": "/bfmteam list - 列出所有已注册队伍的名称",
 
   "commands.team.batch.success_to_player": "因为管理员的操作，你现在是 $teamName$ 队伍的成员了",
   "commands.team.batch.leave_team_by_force": "检查到你是 $teamName$ 队伍的成员，现已自动离开队伍。",

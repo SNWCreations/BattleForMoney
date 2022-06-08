@@ -24,7 +24,7 @@ parameter:
     respawn: Respawn a player who is no longer in the game.
         playerName: The name of the player who will be resurrected.
 
-## /rfmteam
+## /bfmteam
 
 Team system commands.
 

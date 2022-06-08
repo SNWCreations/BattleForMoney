@@ -24,7 +24,7 @@
     respawn: 复活某个已不在游戏中的玩家。
         playerName: 将被复活的玩家的名称。
 
-## /rfmteam
+## /bfmteam
 
 队伍系统命令。
 

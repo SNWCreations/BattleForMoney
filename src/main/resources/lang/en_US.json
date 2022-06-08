@@ -159,9 +159,9 @@
   "commands.hunter.deactivate.success_count": "There are $count$ hunters disabled.",
   "commands.hunter.deactivate.failed_count": "Of these, $count$ players failed to deactivate because they do not exist, are not hunters, or have been disabled.",
 
-  "commands.team.help.join": "/rfmteam join <teamName> - join the team named <teamName>",
-  "commands.team.help.leave": "/rfmteam leave - leave your team",
-  "commands.team.help.list": "/rfmteam list - list the names of all registered teams",
+  "commands.team.help.join": "/bfmteam join <teamName> - join the team named <teamName>",
+  "commands.team.help.leave": "/bfmteam leave - leave your team",
+  "commands.team.help.list": "/bfmteam list - list the names of all registered teams",
 
   "commands.team.batch.success_to_player": "Because of an administrator action, you are now a member of the $teamName$ team",
   "commands.team.batch.leave_team_by_force": "Checked that you are a member of the $teamName$ team and has now automatically left the team.",

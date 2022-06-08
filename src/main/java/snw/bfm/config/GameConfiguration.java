@@ -74,4 +74,8 @@ public final class GameConfiguration {
     public static World getGameWorld() {
         return Bukkit.getWorld(BattleForMoney.getInstance().getConfig().getString("gameworld", "world"));
     }
+
+    public static int getDefaultGameCoinAmount() {
+        return BattleForMoney.getInstance().getConfig().getInt("default_coin_amount", 180000);
+    }
 }

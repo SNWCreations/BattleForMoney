@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import snw.bfm.BattleForMoney;
 import snw.bfm.ItemRegistry;
 import snw.bfm.commands.BFMGameCommand;
+import snw.bfm.config.GameConfiguration;
 import snw.bfm.tasks.GameStartTimer;
 import snw.bfm.tasks.MainTimer;
 import snw.bfm.util.LanguageSupport;
@@ -45,6 +46,7 @@ public final class GameProcess {
                 p.setGameMode(GameMode.SPECTATOR);
             } else {
                 p.getInventory().addItem(ItemRegistry.getRegisteredItemByName("fightball"));
+                bfm.getCoinEarned().put(p.getName(), (double) GameConfiguration.getDefaultGameCoinAmount()); // init the default game coin amount
             }
         }
         Bukkit.getScheduler().runTaskTimer(bfm, () -> {

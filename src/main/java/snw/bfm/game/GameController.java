@@ -11,6 +11,13 @@
 package snw.bfm.game;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import snw.bfm.util.LanguageSupport;
+import snw.bfm.util.NickSupport;
+import snw.bfm.util.PlaceHolderString;
 
 public final class GameController {
     private boolean pause = false;
@@ -52,4 +59,19 @@ public final class GameController {
         return pause;
     }
 
+    public boolean respawn(Player player) {
+        Validate.notNull(player, "Uh, we need a player to respawn!");
+        if (!player.isOnline() || TeamHolder.getInstance().isNotInGame(player)) { // 2022/4/8 如果传入猎人怎么办？？？
+            return false;
+        }
+        player.sendTitle(ChatColor.GREEN + "" + ChatColor.BOLD + LanguageSupport.getTranslation("event.respawn"), "", 20, 40, 10);
+        player.setGameMode(GameMode.ADVENTURE);
+        TeamHolder.getInstance().removeOutPlayer(player);
+        TeamHolder.getInstance().addPlayer(player);
+        Bukkit.broadcastMessage(ChatColor.GREEN + "" + ChatColor.BOLD +
+                new PlaceHolderString(LanguageSupport.getTranslation("event.respawn_broadcast"))
+                        .replaceArgument("playerName", NickSupport.getNickName(player.getName()))
+        );
+        return true;
+    }
 }

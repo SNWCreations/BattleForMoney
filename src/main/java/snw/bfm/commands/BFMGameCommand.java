@@ -13,11 +13,10 @@ package snw.bfm.commands;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
-import dev.jorel.commandapi.arguments.ArgumentSuggestions;
-import dev.jorel.commandapi.arguments.BooleanArgument;
-import dev.jorel.commandapi.arguments.IntegerArgument;
-import dev.jorel.commandapi.arguments.StringArgument;
+import dev.jorel.commandapi.arguments.*;
 import dev.jorel.commandapi.exceptions.WrapperCommandSyntaxException;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import snw.bfm.BattleForMoney;
 import snw.bfm.ItemRegistry;
@@ -110,6 +109,38 @@ public class BFMGameCommand {
                                 )
                                 .executes((sender, args) -> {
                                     resume(sender, (boolean) args[0]);
+                                })
+                )
+                .withSubcommand(
+                        new CommandAPICommand("respawn") // equals /rfmrespawn
+                                .withArguments(
+                                        new PlayerArgument("playerToRespawn")
+                                )
+                                .executes((sender, args) -> {
+                                    requireGame();
+                                    final boolean ok = BattleForMoney.getInstance().getGameController().respawn((Player) args[0]);
+                                    if (ok) {
+                                        sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.operation_success"));
+                                    } else {
+                                        sender.sendMessage(ChatColor.RED + LanguageSupport.getTranslation("commands.operation_failed"));
+                                    }
+                                })
+                )
+                .withSubcommand(
+                        new CommandAPICommand("respawn")
+                                .withArguments(
+                                        new PlayerArgument("playerToRespawn"),
+                                        new LocationArgument("location")
+                                )
+                                .executes((sender, args) -> {
+                                    requireGame();
+                                    final boolean ok = BattleForMoney.getInstance().getGameController().respawn((Player) args[0]);
+                                    ((Player) args[0]).teleport((Location) args[1]);
+                                    if (ok) {
+                                        sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.operation_success"));
+                                    } else {
+                                        sender.sendMessage(ChatColor.RED + LanguageSupport.getTranslation("commands.operation_failed"));
+                                    }
                                 })
                 )
                 .withSubcommand(

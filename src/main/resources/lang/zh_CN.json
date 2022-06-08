@@ -161,13 +161,11 @@
 
   "commands.team.help.join": "/bfmteam join <teamName> - 加入名为 <teamName> 的队伍",
   "commands.team.help.leave": "/bfmteam leave - 离开你所在的队伍",
-  "commands.team.help.list": "/bfmteam list - 列出所有已注册队伍的名称",
 
   "commands.team.batch.success_to_player": "因为管理员的操作，你现在是 $teamName$ 队伍的成员了",
   "commands.team.batch.leave_team_by_force": "检查到你是 $teamName$ 队伍的成员，现已自动离开队伍。",
   "commands.team.batch.success_count": "$count$ 个玩家成为 $teamName$ 队伍的成员。",
 
-  "commands.team.list_header": "现有以下队伍: ",
   "commands.team.hunter.success": "你现在是猎人！",
   "commands.team.hunter.success_admin": "因为管理员的操作，你现在是猎人！",
   "commands.team.hunter.success_count": "$count$ 个玩家成为猎人。",

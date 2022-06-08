@@ -38,7 +38,6 @@ public class BFMTeamCommand {
                     sender.sendMessage(ChatColor.GOLD + "--- BFMTeam help ---");
                     sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.team.help.join"));
                     sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.team.help.leave"));
-                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.team.help.list"));
                 }))
                 .withSubcommand(new CommandAPICommand("join")
                         .withArguments(new MultiLiteralArgument("player", "ninja"))

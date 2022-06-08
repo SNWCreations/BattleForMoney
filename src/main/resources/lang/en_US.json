@@ -161,13 +161,11 @@
 
   "commands.team.help.join": "/bfmteam join <teamName> - join the team named <teamName>",
   "commands.team.help.leave": "/bfmteam leave - leave your team",
-  "commands.team.help.list": "/bfmteam list - list the names of all registered teams",
 
   "commands.team.batch.success_to_player": "Because of an administrator action, you are now a member of the $teamName$ team",
   "commands.team.batch.leave_team_by_force": "Checked that you are a member of the $teamName$ team and has now automatically left the team.",
   "commands.team.batch.success_count": "$count$ players became members of the $teamName$ team.",
 
-  "commands.team.list_header": "There are the teams: ",
   "commands.team.hunter.success": "You are now a hunter!",
   "commands.team.hunter.success_admin": "Because of the admin's actions, you are now a hunter!",
   "commands.team.hunter.success_count": "$count$ players became hunters.",

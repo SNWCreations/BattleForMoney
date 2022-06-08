@@ -146,7 +146,6 @@ public class BFMDataCommand {
                                                     : LanguageSupport.getTranslation("commands.rsq.not_set_yet")));
                                     sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rsq.game_time") + GameConfiguration.getGameTime());
                                     sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rsq.coin_per_second") + GameConfiguration.getCoinPerSecond());
-                                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rsq.multiplier") + GameConfiguration.getCoinMultiplierOnBeCatched());
                                 })
                 )
                 .withSubcommand(

@@ -119,7 +119,6 @@
   "commands.rsq.not_set_yet": "暂未设置",
   "commands.rsq.game_time": "游戏时间 (分钟为单位): ",
   "commands.rsq.coin_per_second": "每秒减少的 硬币 数量: ",
-  "commands.rsq.multiplier": "被捕时 硬币 将乘以: ",
 
   "commands.rfmtimer.enabled": "现在你会在游戏时看到剩余时间。",
   "commands.rfmtimer.disabled": "现在你不会在游戏时看到剩余时间。",

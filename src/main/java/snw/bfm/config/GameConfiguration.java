@@ -71,10 +71,6 @@ public final class GameConfiguration {
         return (result > 0) ? result : 100;
     }
 
-    public static double getCoinMultiplierOnBeCatched() {
-        return Math.max(BattleForMoney.getInstance().getConfig().getInt("coin_multiplier_on_be_catched"), 0.1);
-    }
-
     public static World getGameWorld() {
         return Bukkit.getWorld(BattleForMoney.getInstance().getConfig().getString("gameworld", "world"));
     }

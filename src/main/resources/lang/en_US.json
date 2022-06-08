@@ -119,7 +119,6 @@
   "commands.rsq.not_set_yet": "Not set yet",
   "commands.rsq.game_time": "Game time (in minutes): ",
   "commands.rsq.coin_per_second": "Removed coins per second: ",
-  "commands.rsq.multiplier": "When you have been caught, your coin will be multiplied by: ",
 
   "commands.rfmtimer.enabled": "Now you will see the remaining time while playing.",
   "commands.rfmtimer.disabled": "Now you won't see the remaining time while playing.",

@@ -58,8 +58,8 @@ public final class GameConfiguration {
         endRoomLocation = END_ROOM;
     }
 
-    public static int getReleaseTime() {
-        return BattleForMoney.getInstance().getConfig().getInt("hunter_release_time", 60);
+    public static int getGameStartTime() {
+        return BattleForMoney.getInstance().getConfig().getInt("game_start_time", 60);
     }
 
     public static int getGameTime() {

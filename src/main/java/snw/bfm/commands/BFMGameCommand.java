@@ -60,7 +60,7 @@ public class BFMGameCommand {
                 .withSubcommand(
                         new CommandAPICommand("start") // equals /start
                                 .executes((sender, args) -> {
-                                    start(sender, GameConfiguration.getReleaseTime());
+                                    start(sender, GameConfiguration.getGameStartTime());
                                 })
                 )
                 .withSubcommand(

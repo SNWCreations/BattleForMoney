@@ -113,15 +113,12 @@
   "commands.grouplist.header": "现有以下组: ",
   "commands.grouplist.count": "共有 $count$ 个",
 
-  "commands.rfmrespawn.success_count": "有 $count$ 个玩家被复活。",
-  "commands.rfmrespawn.failed_count": "其中，有 $count$ 个玩家因为不存在或已在游戏中而操作失败。",
-
-  "commands.rsq.hunter_release_time_default": "猎人默认释放时间 (即使用 /start 命令且不提供释放时间时的默认值, 秒为单位): ",
+  "commands.rsq.game_start_time_default": "游戏开始前的倒计时时间 (即使用 /start 命令且不提供释放时间时的默认值, 秒为单位): ",
   "commands.rsq.endroom_location": "终止间位置: ",
   "commands.rsq.endroom_part2": "$x$ $y$ $z$, 位于世界 $worldName$",
   "commands.rsq.not_set_yet": "暂未设置",
   "commands.rsq.game_time": "游戏时间 (分钟为单位): ",
-  "commands.rsq.coin_per_second": "每秒增加的 硬币 数量: ",
+  "commands.rsq.coin_per_second": "每秒减少的 硬币 数量: ",
   "commands.rsq.multiplier": "被捕时 硬币 将乘以: ",
 
   "commands.rfmtimer.enabled": "现在你会在游戏时看到剩余时间。",

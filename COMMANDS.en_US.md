@@ -17,7 +17,7 @@ Usage: `/bfmgame <start/stop/pause/resume/respawn> [arguments..]`
 parameter:
 
     start: start the game.
-        startTime: This parameter affects the release time of hunters. By default, the value specified by the configuration item 'hunter_release_time' is used.
+        startTime: This parameter affects the time before game start. By default, the value specified by the configuration item 'game_start_time' is used.
     stop: Force stop the game.
     pause: Pause the game.
     resume: resume the game.

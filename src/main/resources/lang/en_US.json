@@ -113,15 +113,12 @@
   "commands.grouplist.header": "The following groups exist: ",
   "commands.grouplist.count": "Total $count$",
 
-  "commands.rfmrespawn.success_count": "$count$ players have been respawned.",
-  "commands.rfmrespawn.failed_count": "Of these, $count$ players failed because they don't exist or are already in the game.",
-
-  "commands.rsq.hunter_release_time_default": "The default hunter release time (ie, the default value when using the /start command and no release time is provided, in seconds): ",
+  "commands.rsq.game_start_time_default": "The default game start time (ie, the default value when using the /start command and no release time is provided, in seconds): ",
   "commands.rsq.endroom_location": "Endroom location: ",
   "commands.rsq.endroom_part2": "$x$ $y$ $z$, in world $worldName$",
   "commands.rsq.not_set_yet": "Not set yet",
   "commands.rsq.game_time": "Game time (in minutes): ",
-  "commands.rsq.coin_per_second": "Increased coins per second: ",
+  "commands.rsq.coin_per_second": "Removed coins per second: ",
   "commands.rsq.multiplier": "When you have been caught, your coin will be multiplied by: ",
 
   "commands.rfmtimer.enabled": "Now you will see the remaining time while playing.",

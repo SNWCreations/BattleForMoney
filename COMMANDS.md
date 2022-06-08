@@ -17,7 +17,7 @@
 参数:
 
     start: 启动游戏。
-        startTime: 此参数会影响猎人释放的时间。默认使用配置项 'hunter_release_time' 指定的值。
+        startTime: 此参数会影响游戏开始前的倒计时的时间。默认使用配置项 'game_start_time' 指定的值。
     stop: 强制停止游戏。
     pause: 暂停游戏。
     resume: 继续游戏。

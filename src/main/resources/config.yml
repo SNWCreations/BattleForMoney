@@ -11,7 +11,7 @@ gameworld: "world"
 language: "zh_CN"
 
 # 游戏开始时间，以秒为单位，遇到无效值时默认使用 10 秒。
-hunter_release_time: 60
+game_start_time: 10
 # 游戏总时长，以分钟为单位，遇到无效值时默认 30 分钟。
 game_time: 30
 # 终止间 位置，格式 x y z ，遇到无效值时会发出警告，若游戏时玩家被淘汰但没有可用的终止间 位置，玩家将会在被淘汰的位置成为旁观者。

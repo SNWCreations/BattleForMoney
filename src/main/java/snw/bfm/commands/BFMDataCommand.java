@@ -132,7 +132,7 @@ public class BFMDataCommand {
                 .withSubcommand(
                         new CommandAPICommand("settings") // equals /rsq
                                 .executes((sender, args) -> {
-                                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rsq.hunter_release_time_default") + GameConfiguration.getReleaseTime());
+                                    sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rsq.game_start_time_default") + GameConfiguration.getGameStartTime());
                                     Location erl = GameConfiguration.getEndRoomLocation();
                                     //noinspection ConstantConditions
                                     sender.sendMessage(ChatColor.GREEN + LanguageSupport.getTranslation("commands.rsq.endroom_location") +

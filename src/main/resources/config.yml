@@ -22,5 +22,3 @@ coin_per_second: 100
 default_coin_amount: 180000
 # 战斗球的冷却时间，默认 5 秒。
 fightball_cooldown: 5
-# 当逃走队员被捕时，当时拥有的B币该乘以几？默认值为 0.1 (即 1/10) 。
-coin_multiplier_on_be_catched: 0.1

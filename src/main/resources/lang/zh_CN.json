@@ -43,10 +43,6 @@
   "event.join_preset_as_runner": "你被管理员预设为逃走队员。",
   "event.join.preset_join_group": "你被预设加入组 $groupName$ 。",
 
-  "event.hunter_release_timer_message": "猎人还有 $time$ 秒放出",
-  "event.hunter_released": "猎人已经放出",
-
-  "event.catch_message": "$playerName$ 被抓",
   "event.exit_message": "$playerName$ 已弃权",
   "event.respawn": "你已被复活",
   "event.respawn_broadcast": "$playerName$ 已被复活",

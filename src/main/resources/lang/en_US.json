@@ -43,10 +43,6 @@
   "event.join_preset_as_runner": "You are preset as a runner by the administrator.",
   "event.join.preset_join_group": "You are preset to join group $groupName$.",
 
-  "event.hunter_release_timer_message": "The hunter has $time$ seconds to release",
-  "event.hunter_released": "Hunter has been released",
-
-  "event.catch_message": "$playerName$ was caught.",
   "event.exit_message": "$playerName$ has abstained.",
   "event.respawn": "You have been resurrected",
   "event.respawn_broadcast": "$playerName$ has been revived.",

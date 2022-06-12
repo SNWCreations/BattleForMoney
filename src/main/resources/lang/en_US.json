@@ -43,6 +43,7 @@
   "event.join_preset_as_runner": "You are preset as a runner by the administrator.",
   "event.join.preset_join_group": "You are preset to join group $groupName$.",
 
+  "event.exit_warning": "$playerName$ will exit this game after $time$ seconds.",
   "event.exit_message": "$playerName$ has abstained.",
   "event.respawn": "You have been resurrected",
   "event.respawn_broadcast": "$playerName$ has been revived.",
@@ -86,6 +87,7 @@
   "commands.invalid_argument": "Invalid value provided.",
   "commands.player_required": "This command can only be executed by players.",
   "commands.player_not_online": "Player is not online.",
+  "commands.player_not_in_game": "Player is not in game.",
   "commands.operation_success": "The operation was successful.",
   "commands.operation_failed": "The operation failed.",
   "commands.batch.op_required": "Batch operations can only be performed by administrators.",

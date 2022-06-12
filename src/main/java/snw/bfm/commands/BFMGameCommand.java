@@ -15,7 +15,10 @@ import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.*;
 import dev.jorel.commandapi.exceptions.WrapperCommandSyntaxException;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import snw.bfm.BattleForMoney;
@@ -24,20 +27,17 @@ import snw.bfm.config.GameConfiguration;
 import snw.bfm.game.GameController;
 import snw.bfm.game.GameProcess;
 import snw.bfm.game.TeamHolder;
+import snw.bfm.tasks.ExitTimer;
 import snw.bfm.tasks.GameStartTimer;
 import snw.bfm.tasks.MainTimer;
 import snw.bfm.util.LanguageSupport;
-
-import static snw.bfm.util.CommandUtil.requireGame;
-import static snw.bfm.util.CommandUtil.requireNoGame;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import snw.bfm.util.PlaceHolderString;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static snw.bfm.util.CommandUtil.requireGame;
+import static snw.bfm.util.CommandUtil.requireNoGame;
 
 public class BFMGameCommand {
     private static final Set<String> seeTimerPlayers = new HashSet<>();
@@ -168,6 +168,19 @@ public class BFMGameCommand {
                                         );
                                     }
                                 })
+                )
+                .withSubcommand(
+                        new CommandAPICommand("exit")
+                        .withArguments(
+                                new EntitySelectorArgument("target", EntitySelectorArgument.EntitySelector.ONE_PLAYER)
+                        )
+                        .executes(((sender, args) -> {
+                            final Player target = (Player) args[0];
+                            if (TeamHolder.getInstance().isNotInGame(target)) {
+                                throw CommandAPI.fail(LanguageSupport.getTranslation("commands.player_not_in_game"));
+                            }
+                            new ExitTimer(GameConfiguration.getExitTime(), target.getName()).start(BattleForMoney.getInstance());
+                        }))
                 )
                 .register();
 

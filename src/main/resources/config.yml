@@ -24,3 +24,5 @@ default_coin_amount: 180000
 fightball_cooldown: 5
 # 当玩家击败其他玩家时，TA应该得到多少硬币的奖励？默认 50000
 killreward: 50000
+# 弃权倒计时时间，默认 60 秒。
+exit_time: 60

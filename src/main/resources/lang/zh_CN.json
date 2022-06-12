@@ -43,6 +43,7 @@
   "event.join_preset_as_runner": "你被管理员预设为逃走队员。",
   "event.join.preset_join_group": "你被预设加入组 $groupName$ 。",
 
+  "event.exit_warning": "$playerName$ 还有 $time$ 秒即可弃权成功",
   "event.exit_message": "$playerName$ 已弃权",
   "event.respawn": "你已被复活",
   "event.respawn_broadcast": "$playerName$ 已被复活",
@@ -86,6 +87,7 @@
   "commands.invalid_argument": "提供的值无效。",
   "commands.player_required": "此指令只能玩家执行。",
   "commands.player_not_online": "玩家不在线。",
+  "commands.player_not_in_game": "玩家不再游戏中。",
   "commands.operation_success": "操作成功。",
   "commands.operation_failed": "操作失败。",
   "commands.batch.op_required": "批量操作仅管理员可以执行。",

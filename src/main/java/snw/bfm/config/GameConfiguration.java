@@ -82,4 +82,8 @@ public final class GameConfiguration {
     public static int getKillReward() {
         return BattleForMoney.getInstance().getConfig().getInt("killreward", 50000);
     }
+
+    public static int getExitTime() {
+        return BattleForMoney.getInstance().getConfig().getInt("exit_time", 60);
+    }
 }

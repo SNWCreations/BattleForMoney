@@ -10,6 +10,7 @@
 
 package snw.bfm.game;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;
@@ -81,6 +82,8 @@ public final class TeamHolder {
     }
 
     public void addGiveUpPlayer(String player) {
+        Validate.isTrue(!getNinja().contains(player));
+        removePlayer(player);
         giveUpPlayers.add(player);
     }
 

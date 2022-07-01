@@ -31,6 +31,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import snw.bfm.BattleForMoney;
 import snw.bfm.ItemRegistry;
 import snw.bfm.config.GameConfiguration;
@@ -182,7 +183,17 @@ public final class EventProcessor implements Listener {
                         .toString()
         );
 
-        damager.setCooldown(Material.SNOWBALL, BattleForMoney.getInstance().getConfig().getInt("fightball_cooldown", 5) * 20);
+        int cooldown = BattleForMoney.getInstance().getConfig().getInt("fightball_cooldown", 5) * 20;
+        damager.setCooldown(Material.SNOWBALL, cooldown);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (TeamHolder.getInstance().getPlayers().contains(damager.getName())) { // if the damager is still in game
+                    damager.getInventory().addItem(ItemRegistry.getRegisteredItemByName("fightball"));
+                }
+                // or don't give him the fight ball
+            }
+        }.runTaskLater(BattleForMoney.getInstance(), cooldown);
 
         // kill reward
         Map<String, Double> killReward = BattleForMoney.getInstance().getKillReward();

@@ -129,10 +129,7 @@ public final class BattleForMoney extends JavaPlugin {
         assert ballMeta != null;
         ballMeta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "战斗球");
         ball.setItemMeta(ballMeta);
-        ItemRegistry.registerItem("fightball", ball, (player) -> {
-            player.getInventory().addItem(ball);
-            return false;
-        });
+        ItemRegistry.registerItem("fightball", ball);
         // endregion
     }
 
